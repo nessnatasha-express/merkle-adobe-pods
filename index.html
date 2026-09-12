@@ -264,11 +264,17 @@
             box-shadow: 0 4px 10px rgba(20, 20, 43, 0.07), 0 14px 30px rgba(20, 20, 43, 0.08);
         }
         .card h3 { font-size: 18px; font-weight: 600; color: #1F1F1F; margin-bottom: 16px; }
+        .card-flat {
+            background-color: #FFFFFF; padding: 32px; border-radius: 10px; border: 1px solid #EDEDED; margin-bottom: 32px;
+        }
 
         .overview-description { font-size: 17px; line-height: 1.65; color: #33333F; margin-bottom: 0; max-width: 900px; }
 
         .objective-item { display: flex; gap: 12px; margin-bottom: 12px; font-size: 15px; color: #1F1F1F; }
         .objective-bullet { color: #0328D1; font-weight: 700; margin-top: 2px; }
+        .objectives-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        @media (max-width: 700px) { .objectives-columns { grid-template-columns: 1fr; gap: 24px; } }
+        .objectives-col-label { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #8A8A9A; margin-bottom: 14px; }
 
         /* Resources - individual person tiles + hiring tiles */
         .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
@@ -420,6 +426,7 @@
         /* Resource Inventory - table */
         .inventory-table {
             width: 100%; border-collapse: collapse; background-color: #FFFFFF; border: 1px solid #EDEDED; border-radius: 10px; overflow: hidden;
+            table-layout: fixed;
         }
         .inventory-table thead { background-color: #F7F7F7; }
         .inventory-table th { padding: 14px 16px; text-align: left; font-weight: 700; font-size: 12px; color: #8A8A9A; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #E4E4E4; }
@@ -428,7 +435,17 @@
         .inventory-name-link { color: #0328D1; font-weight: 700; cursor: pointer; }
         .inventory-name-link:hover { text-decoration: underline; }
         .inventory-name-open { color: #8A8A9A; font-style: italic; }
-        .inventory-tags-cell { display: flex; flex-wrap: wrap; gap: 6px; max-width: 320px; }
+        .inventory-name-cell { display: flex; align-items: center; gap: 10px; }
+        .inventory-thumb {
+            width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; color: #FFFFFF;
+            background: linear-gradient(135deg, #0328D1, #6311CB);
+        }
+        .inventory-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .inventory-thumb.open-role { background: #E9E9EF; color: #ABABBB; }
+        .inventory-thumb.open-role svg { width: 14px; height: 14px; }
+        .inventory-tags-cell { display: flex; flex-wrap: wrap; gap: 6px; }
         .expertise-tag {
             display: inline-block; background: rgba(99,17,203,0.12); color: #6311CB; font-size: 11.5px; font-weight: 700;
             padding: 4px 10px; border-radius: 14px; white-space: nowrap;
@@ -445,7 +462,7 @@
         }
         .modal-overlay.open { display: flex; }
         .modal-box {
-            background: #0F0F1E; border-radius: 16px; max-width: 920px; width: 100%; max-height: 88vh;
+            background: #0F0F1E; border-radius: 16px; max-width: 640px; width: 100%; max-height: 88vh;
             display: flex; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); position: relative;
         }
         .modal-close {
@@ -454,18 +471,19 @@
             display: flex; align-items: center; justify-content: center; transition: background 0.2s ease;
         }
         .modal-close:hover { background: rgba(255,255,255,0.2); }
-        .modal-image-panel {
-            width: 340px; flex-shrink: 0; position: relative; background: linear-gradient(180deg, #0328D1 0%, #0F0F1E 100%);
-        }
-        .modal-image-panel img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-        .modal-image-placeholder {
-            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            font-size: 64px; font-weight: 700; color: rgba(255,255,255,0.85);
-        }
         .modal-content-panel { flex: 1; padding: 40px; overflow-y: auto; color: #FFFFFF; }
-        .modal-name { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
-        .modal-role { font-size: 15px; font-style: italic; color: #6FA8FF; margin-bottom: 4px; font-weight: 500; }
-        .modal-tagline { font-size: 13px; color: #9A9AAE; margin-bottom: 16px; }
+        .modal-header-row { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+        .modal-avatar {
+            width: 72px; height: 72px; border-radius: 50%; flex-shrink: 0; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #0328D1, #6311CB);
+            font-size: 24px; font-weight: 700; color: #FFFFFF;
+        }
+        .modal-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+        .modal-header-text { flex: 1; min-width: 0; }
+        .modal-name { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+        .modal-role { font-size: 14px; font-style: italic; color: #6FA8FF; margin-bottom: 4px; font-weight: 500; }
+        .modal-tagline { font-size: 13px; color: #9A9AAE; }
         .modal-status-row { margin-bottom: 20px; }
         .modal-status-pill {
             display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px;
@@ -494,8 +512,7 @@
         }
 
         @media (max-width: 700px) {
-            .modal-box { flex-direction: column; max-height: 92vh; }
-            .modal-image-panel { width: 100%; height: 220px; }
+            .modal-box { max-height: 92vh; }
             .modal-content-panel { padding: 28px 24px; }
         }
 
@@ -595,8 +612,8 @@
                 <div class="header-top-row">
                     <div class="header-text-block">
                         <div class="header-eyebrow">Adobe &lt;&gt; Merkle Pod Charters</div>
-                        <h1 id="pageTitle">Pod Charters</h1>
-                        <p class="subhead" id="headerDesc">Complete overview of all Adobe Integrated Services pods</p>
+                        <h1 id="pageTitle">Pod Profiles & Charters</h1>
+                        <p class="subhead" id="headerDesc">Use this site to get a high-level understanding of where we stand with staffing and resourcing, and to deepen your awareness of what each pod will be doing for this critical Adobe initiative.</p>
                     </div>
                     <div class="adobe-contact-card" id="adobeContactCard" style="display:none;"></div>
                 </div>
@@ -613,7 +630,6 @@
     <div class="modal-overlay" id="profileModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeProfileModal()"><svg class="icon"><use href="#icon-x"/></svg></button>
-            <div class="modal-image-panel" id="modalImagePanel"></div>
             <div class="modal-content-panel" id="modalContentPanel"></div>
         </div>
     </div>
@@ -1381,21 +1397,23 @@
                 image: null
             };
 
-            const imagePanel = document.getElementById('modalImagePanel');
-            if (profile.image) {
-                imagePanel.innerHTML = `<img src="${profile.image}" alt="${name}">`;
-            } else {
-                imagePanel.innerHTML = `<div class="modal-image-placeholder">${getInitials(name)}</div>`;
-            }
+            const avatarInner = profile.image
+                ? `<img src="${profile.image}" alt="${name}">`
+                : getInitials(name);
 
             const rawTagline = (profile.currentTitle || profile.title || '').split('|')[0].trim();
             const showTagline = rawTagline && rawTagline.toLowerCase() !== role.toLowerCase();
 
             const content = document.getElementById('modalContentPanel');
             content.innerHTML = `
-                <div class="modal-name">${name}</div>
-                <div class="modal-role">${role}</div>
-                ${showTagline ? `<div class="modal-tagline">${rawTagline}</div>` : ''}
+                <div class="modal-header-row">
+                    <div class="modal-avatar">${avatarInner}</div>
+                    <div class="modal-header-text">
+                        <div class="modal-name">${name}</div>
+                        <div class="modal-role">${role}</div>
+                        ${showTagline ? `<div class="modal-tagline">${rawTagline}</div>` : ''}
+                    </div>
+                </div>
                 <div class="modal-status-row">
                     <span class="modal-status-pill ${status}">${statusLabel(status)}</span>
                 </div>
@@ -2211,7 +2229,7 @@
                 <div class="tab-nav">
                     <button class="tab-btn active" data-tab="overview"><svg class="icon"><use href="#icon-clipboard"/></svg><span>Overview</span></button>
                     <button class="tab-btn" data-tab="resources"><svg class="icon"><use href="#icon-users"/></svg><span>Resources</span></button>
-                    <button class="tab-btn" data-tab="activations"><svg class="icon"><use href="#icon-rocket"/></svg><span>Activations</span></button>
+                    <button class="tab-btn" data-tab="activations"><svg class="icon"><use href="#icon-rocket"/></svg><span>In Scope / Out of Scope</span></button>
                     <button class="tab-btn" data-tab="discussions"><svg class="icon"><use href="#icon-chat"/></svg><span>Recent Discussions</span></button>
                 </div>
                 <hr class="tab-nav-divider">
@@ -2226,10 +2244,17 @@
                         ${renderResourcingStatusBlock(pod)}
                     </div>
                     <div class="card">
-                        <h3>Objectives</h3>
-                        ${pod.objectives.map(obj => `<div class="objective-item"><span class="objective-bullet">&bull;</span><span>${obj}</span></div>`).join('')}
-                        <h3 style="margin-top: 28px;">Success Criteria</h3>
-                        ${pod.successCriteria.map(c => `<div class="objective-item"><span class="objective-bullet">&bull;</span><span>${c}</span></div>`).join('')}
+                        <h3>Delivery Focus of this Pod</h3>
+                        <div class="objectives-columns">
+                            <div>
+                                <div class="objectives-col-label">Objectives</div>
+                                ${pod.objectives.map(obj => `<div class="objective-item"><span class="objective-bullet">&bull;</span><span>${obj}</span></div>`).join('')}
+                            </div>
+                            <div>
+                                <div class="objectives-col-label">Success Criteria</div>
+                                ${pod.successCriteria.map(c => `<div class="objective-item"><span class="objective-bullet">&bull;</span><span>${c}</span></div>`).join('')}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2238,6 +2263,7 @@
                 </div>
 
                 <div class="tab-content" id="tab-activations">
+                    <h3 style="margin-bottom: 20px;">In Scope</h3>
             `;
 
             const phases = [
@@ -2263,10 +2289,18 @@
             });
 
             html += `
+                    <h3 style="margin-top: 36px; margin-bottom: 20px; border-top: 1px solid #E4E4E4; padding-top: 32px;">Out of Scope</h3>
+                    ${pod.outOfScope && pod.outOfScope.length > 0
+                        ? pod.outOfScope.map(item => `<div class="objective-item"><span class="objective-bullet">&bull;</span><span>${item}</span></div>`).join('')
+                        : `<div style="color: #8A8A9A; font-size: 14px; font-style: italic;">No items added yet.</div>`}
+            `;
+
+            html += `
                 </div>
                 <div class="tab-content" id="tab-discussions">
-                    <div class="card">
+                    <div class="card-flat">
                         <h3>Recent Discussions</h3>
+                        <p class="overview-description" style="font-size: 15px; margin-bottom: 20px;">Here are some of the key events that have occurred over the last few weeks regarding this pod.</p>
                         ${pod.discussions && pod.discussions.length > 0 ? `
                             <table class="discussions-table">
                                 <thead><tr><th>When</th><th>What</th><th>Who</th><th>Next Step</th></tr></thead>
@@ -2289,12 +2323,18 @@
             if (loc.includes('mixed') || loc.includes('tbd') || !loc.trim()) return 'TBD';
             if (loc.includes('japan')) return 'Japan';
             if (loc.includes('off')) return 'India';
-            return 'North America';
+            return 'NOAM';
         }
 
         function regionFlag(region) {
-            const map = { 'North America': '🇺🇸🇨🇦', 'India': '🇮🇳', 'Japan': '🇯🇵' };
+            const map = { 'NOAM': '🇺🇸🇨🇦', 'India': '🇮🇳', 'Japan': '🇯🇵' };
             return map[region] || '';
+        }
+
+        function getPodShortLabel(pod, podKey) {
+            if (podKey === 'unassigned') return 'Bench';
+            if (!pod.id) return '';
+            return pod.id.replace(/^T/, '');
         }
 
         function buildResourceInventory() {
@@ -2302,6 +2342,7 @@
             const assignedNames = new Set();
             Object.entries(pods).forEach(([key, pod]) => {
                 if (key === 'summary') return;
+                const podShort = getPodShortLabel(pod, key);
                 pod.resources.forEach(res => {
                     res.people.forEach(p => {
                         assignedNames.add(p.name);
@@ -2309,13 +2350,8 @@
                         const tags = (profile && profile.tags && profile.tags.length) ? profile.tags.slice(0, 5) : (pod.podTags || []).slice(0, 5);
                         const rawLocation = p.location || (profile && profile.location) || pod.locationDefault || '';
                         const region = resolveRegion(rawLocation);
-                        rows.push({ name: p.name, podKey: key, podName: pod.name, role: res.role, status: p.status, tags, named: true, region });
+                        rows.push({ name: p.name, podKey: key, podName: pod.name, podShort, role: res.role, status: p.status, tags, named: true, region });
                     });
-                    if (res.openCount > 0) {
-                        const rawLocation = pod.locationDefault || '';
-                        const region = resolveRegion(rawLocation);
-                        rows.push({ name: null, podKey: key, podName: pod.name, role: res.role, status: res.openStatus, tags: (pod.podTags || []).slice(0, 5), named: false, openCount: res.openCount, region });
-                    }
                 });
             });
 
@@ -2328,6 +2364,7 @@
                     name: name,
                     podKey: 'unassigned',
                     podName: 'Unassigned / Bench',
+                    podShort: 'Bench',
                     role: profile.title || 'Role TBD',
                     status: 'filled',
                     tags,
@@ -2348,7 +2385,9 @@
             const allRows = buildResourceInventory();
             const allRoles = [...new Set(allRows.map(r => r.role))].sort();
             const allPodNames = [...new Set(allRows.map(r => r.podName))];
-            const allStatuses = ['filled', 'adobevetting', 'interviewing', 'defining', 'onhold'];
+            const STATUS_ORDER = ['filled', 'adobevetting', 'interviewing', 'defining', 'onhold'];
+            const presentStatuses = new Set(allRows.map(r => r.status));
+            const allStatuses = STATUS_ORDER.filter(s => presentStatuses.has(s));
 
             return `
                 <div class="inventory-filter-bar">
@@ -2412,21 +2451,41 @@
             wrap.innerHTML = `
                 <div class="inventory-result-count">${filtered.length} resource${filtered.length !== 1 ? 's' : ''}</div>
                 <table class="inventory-table">
+                    <colgroup>
+                        <col style="width: 17%;">
+                        <col style="width: 6%;">
+                        <col style="width: 11%;">
+                        <col style="width: 14%;">
+                        <col style="width: 13%;">
+                        <col style="width: 39%;">
+                    </colgroup>
                     <thead><tr><th>Name</th><th>Pod</th><th>Region</th><th>Role</th><th>Status</th><th>Expertise</th></tr></thead>
                     <tbody>
-                        ${filtered.map(row => `
+                        ${filtered.map(row => {
+                            const profile = row.named ? profiles[row.name] : null;
+                            const thumb = row.named
+                                ? (profile && profile.image
+                                    ? `<div class="inventory-thumb"><img src="${profile.image}" alt="${row.name}"></div>`
+                                    : `<div class="inventory-thumb">${getInitials(row.name)}</div>`)
+                                : `<div class="inventory-thumb open-role"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>`;
+                            return `
                             <tr>
-                                <td>${row.named
-                                    ? `<span class="inventory-name-link" onclick="openProfileModal('${row.name.replace(/'/g, "\\'")}', '${row.role.replace(/'/g, "\\'")}', '${row.status}', '${row.podKey}')">${row.name}</span>`
-                                    : `<span class="inventory-name-open">${row.openCount} Open Role${row.openCount > 1 ? 's' : ''}</span>`}
+                                <td>
+                                    <div class="inventory-name-cell">
+                                        ${thumb}
+                                        ${row.named
+                                            ? `<span class="inventory-name-link" onclick="openProfileModal('${row.name.replace(/'/g, "\\'")}', '${row.role.replace(/'/g, "\\'")}', '${row.status}', '${row.podKey}')">${row.name}</span>`
+                                            : `<span class="inventory-name-open">${row.openCount} Open Role${row.openCount > 1 ? 's' : ''}</span>`}
+                                    </div>
                                 </td>
-                                <td>${row.podName}</td>
+                                <td>${row.podShort}</td>
                                 <td>${regionFlag(row.region)} ${row.region || 'TBD'}</td>
                                 <td>${row.role}</td>
                                 <td><span class="status-tag ${statusPillClass(row.status)}">${statusWord(row.status) || 'Filled'}</span></td>
                                 <td class="inventory-tags-cell">${row.tags.map(t => `<span class="expertise-tag">${t}</span>`).join('')}</td>
                             </tr>
-                        `).join('')}
+                        `;
+                        }).join('')}
                     </tbody>
                 </table>
             `;
@@ -2517,8 +2576,8 @@
             const adobeCard = document.getElementById('adobeContactCard');
 
             if (activePod === 'summary') {
-                document.getElementById('pageTitle').textContent = 'Pod Charters';
-                document.getElementById('headerDesc').textContent = 'Complete overview of all Adobe Integrated Services pods';
+                document.getElementById('pageTitle').textContent = 'Pod Profiles & Charters';
+                document.getElementById('headerDesc').textContent = 'Use this site to get a high-level understanding of where we stand with staffing and resourcing, and to deepen your awareness of what each pod will be doing for this critical Adobe initiative.';
                 adobeCard.style.display = 'none';
                 document.getElementById('pageContent').innerHTML = renderSummaryPage();
                 return;
