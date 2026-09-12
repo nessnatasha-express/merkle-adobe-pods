@@ -202,6 +202,21 @@
         }
         .status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
         @media (max-width: 900px) { .status-grid { grid-template-columns: repeat(2, 1fr); } }
+        .status-grid-2 { grid-template-columns: repeat(2, 1fr); margin-bottom: 20px; }
+        @media (max-width: 900px) { .status-grid-2 { grid-template-columns: 1fr; } }
+
+        .role-breakdown-card { }
+        .role-breakdown-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 600; color: #505050; margin-bottom: 16px; }
+        .role-breakdown-pct { font-size: 20px; font-weight: 700; color: #0328D1; }
+        .role-bars { display: flex; flex-direction: column; gap: 12px; }
+        .role-bar-row { display: grid; grid-template-columns: 168px 1fr 44px; align-items: center; gap: 14px; }
+        @media (max-width: 900px) { .role-bar-row { grid-template-columns: 120px 1fr 40px; gap: 10px; } }
+        .role-bar-label { font-size: 13px; color: #33333F; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .role-bar-track { width: 100%; height: 10px; border-radius: 5px; background: #E9E9EF; overflow: hidden; }
+        .role-bar-fill { height: 100%; border-radius: 5px; background: #6FA8FF; transition: width 0.3s ease; }
+        .role-bar-fill.full { background: #0328D1; }
+        .role-bar-count { font-size: 12px; font-weight: 600; color: #8A8A9A; text-align: right; }
+        .role-bar-count.full { color: #0328D1; }
         .status-box {
             text-align: center; padding: 18px 12px; border-radius: 10px; border: 1px solid #E4E4E4; background: #FAFAFA;
             box-shadow: 0 3px 8px rgba(20, 20, 43, 0.06), 0 10px 20px rgba(20, 20, 43, 0.06);
@@ -1399,7 +1414,13 @@
         const pods = {
             'summary': { name: 'Summary', type: 'summary' },
             'tier-1': {
-                name: 'Tier 1: Leadership', id: 'T1', adobeContact: 'Morgan Ritter',
+                name: 'Tier 1: Leadership', id: 'T1', adobeContact: 'Morgan Ritter', rolesToFill: 4,
+                roleBreakdown: [
+                    { role: 'Alliance Growth Officer', filled: 1, total: 1 },
+                    { role: 'Lead Strategist', filled: 1, total: 1 },
+                    { role: 'Multi-Solution Architect', filled: 1, total: 1 },
+                    { role: 'Program Manager', filled: 1, total: 1 }
+                ],
                 summary: 'Tier 1 provides strategic leadership and cross-pod orchestration for Adobe Integrated Services.',
                 overviewDescription: 'Tier 1 sets strategic direction for the entire Adobe Integrated Services engagement, orchestrating resourcing, technical strategy, and executive relationships across every pod beneath it. This team identifies expansion opportunities within the client\'s Adobe ecosystem, builds long-term technology roadmaps, and ensures delivery execution stays aligned with the client\'s broader business goals. As the senior-most layer of the program, Tier 1 is accountable for program-wide health, cross-pod coordination, and the executive relationships that keep the engagement growing.',
                 podTags: ['Strategic Leadership', 'Alliance Management', 'Cross-Pod Orchestration'],
@@ -1435,7 +1456,10 @@
                 ]
             },
             'tier-2': {
-                name: 'Tier 2: Enterprise Architects', id: 'T2', adobeContact: 'Jenn Reardon',
+                name: 'Tier 2: Enterprise Architects', id: 'T2', adobeContact: 'Jenn Reardon', rolesToFill: 4,
+                roleBreakdown: [
+                    { role: 'Senior Enterprise Architect', filled: 3, total: 4 }
+                ],
                 summary: 'Tier 2 provides senior technical architecture and advisory for Adobe Integrated Services.',
                 overviewDescription: 'Tier 2 supplies the deep technical architecture and advisory expertise that underpins every delivery pod in the program. This team leads discovery and solution design across the full Adobe Experience Cloud stack, translating complex client requirements into integrated, governed architectures. Beyond hands-on design work, Tier 2 architects also mentor delivery teams and build client-side technical maturity so solutions remain sustainable long after go-live.',
                 podTags: ['Solution Architecture', 'Discovery & Roadmapping', 'Architecture Governance'],
@@ -1476,7 +1500,13 @@
                 ]
             },
             'tier-3-1': {
-                name: 'Tier 3.1: Integrated Services', id: '3.1', adobeContact: 'Jenn Reardon',
+                name: 'Tier 3.1: Integrated Services', id: '3.1', adobeContact: 'Jenn Reardon', rolesToFill: 10,
+                roleBreakdown: [
+                    { role: 'Program Manager', filled: 1, total: 2 },
+                    { role: 'Business Analyst', filled: 1, total: 2 },
+                    { role: 'Lead Developer', filled: 2, total: 4 },
+                    { role: 'Lead Architect', filled: 1, total: 2 }
+                ],
                 summary: 'Tier 3.1 delivers ongoing technical implementation and delivery across integrated services engagements.',
                 overviewDescription: 'Tier 3.1 is the core delivery engine for Integrated Services engagements, carrying clients from strategy into live production through phased, predictable roadmaps. This pod balances multiple concurrent workstreams — program management, business analysis, architecture, and development — while maintaining clear scope boundaries so client expectations and delivery timelines stay aligned. A key focus is building lasting client-side platform competency, ensuring the value of each engagement extends well beyond the initial delivery window.',
                 podTags: ['Delivery Management', 'Custom Development', 'Architecture Governance'],
@@ -1532,7 +1562,10 @@
                 ]
             },
             'tier-3-2a': {
-                name: 'Tier 3.2a: ACS Pre-Sales', id: '3.2a', adobeContact: 'Kathy Martin',
+                name: 'Tier 3.2a: ACS Pre-Sales', id: '3.2a', adobeContact: 'Kathy Martin', rolesToFill: 4,
+                roleBreakdown: [
+                    { role: 'Solution Architect', filled: 0, total: 4 }
+                ],
                 summary: 'Tier 3.2a delivers specialized Adobe Consulting Services pre-sales engagements, focusing on AEM and AJO architecture design.',
                 overviewDescription: 'Tier 3.2a is Adobe Consulting Services\' dedicated pre-sales pod, engaging prospective clients with deep AEM and AJO solution architecture before a full engagement is signed. This team designs technical solutions that demonstrate integration depth and platform value, then builds the business case that turns strategic interest into a committed, longer-term engagement. Because this work happens ahead of contract signature, the pod operates with tight turnaround expectations and close coordination with Adobe\'s own pre-sales organization.',
                 podTags: ['AEM Architecture', 'AJO Architecture', 'Pre-Sales'],
@@ -1569,7 +1602,11 @@
                 ]
             },
             'tier-3-2b': {
-                name: 'Tier 3.2b: AEM/AJO Japan', id: '3.2b', adobeContact: 'Jumpei Oguri',
+                name: 'Tier 3.2b: AEM/AJO Japan', id: '3.2b', adobeContact: 'Jumpei Oguri', rolesToFill: 4,
+                roleBreakdown: [
+                    { role: 'AEM Consultant', filled: 3, total: 3 },
+                    { role: 'AJO Consultant', filled: 1, total: 1 }
+                ],
                 summary: 'Tier 3.2b delivers hands-on AEM Sites/Assets and AJO implementations for Japan-based clients.',
                 overviewDescription: 'Tier 3.2b delivers hands-on AEM Sites, AEM Assets, and AJO implementation work tailored specifically to Japan-based clients, adapting global Adobe best practices to local market and language requirements. The team configures campaign and journey capabilities for the Japanese market while providing thorough team enablement so client staff can operate the platform independently. Governance and sustainable content management practices are built in from the start to support long-term platform health.',
                 podTags: ['AEM Sites', 'AEM Assets', 'AJO', 'Localization'],
@@ -1612,7 +1649,12 @@
                 ]
             },
             'tier-3-3': {
-                name: 'Tier 3.3: Analytics Modernization', id: '3.3', adobeContact: 'Eric O., John L.',
+                name: 'Tier 3.3: Analytics Modernization', id: '3.3', adobeContact: 'Eric O., John L.', rolesToFill: 8,
+                roleBreakdown: [
+                    { role: 'Tech Architect', filled: 2, total: 4 },
+                    { role: 'Business Analyst', filled: 2, total: 3 },
+                    { role: 'Data Architect', filled: 1, total: 1 }
+                ],
                 summary: 'Tier 3.3 delivers Customer Journey Analytics (CJA) implementations and analytics platform modernization.',
                 overviewDescription: 'Tier 3.3 modernizes client analytics platforms around Adobe Customer Journey Analytics (CJA), designing the data architecture and pipelines that make cross-channel measurement possible. This pod builds robust, governed data pipelines and works closely with client analytics teams to transfer the skills needed to operate CJA independently. Success here is measured not just by clean implementation, but by client teams\' ability to self-serve insights and expand their analytics practice over time.',
                 podTags: ['CJA', 'Data Architecture', 'Analytics Governance'],
@@ -1655,7 +1697,15 @@
                 ]
             },
             'tier-3-4a': {
-                name: 'Tier 3.4a: Drago', id: '3.4a', adobeContact: 'Ben Durst, Reggie Walke',
+                name: 'Tier 3.4a: Drago', id: '3.4a', adobeContact: 'Ben Durst, Reggie Walke', rolesToFill: 7,
+                roleBreakdown: [
+                    { role: 'Agentic Architect', filled: 1, total: 1 },
+                    { role: 'AEM EDS Developer', filled: 1, total: 2 },
+                    { role: 'Design Engineer', filled: 0, total: 1 },
+                    { role: 'QA', filled: 1, total: 1 },
+                    { role: 'Business Analyst', filled: 0, total: 1 },
+                    { role: 'Product Manager', filled: 1, total: 1 }
+                ],
                 summary: 'Tier 3.4a (Drago) delivers next-generation agentic web experiences using AEM and Edge Delivery Services.',
                 overviewDescription: 'Tier 3.4a, known internally as Drago, pushes into next-generation agentic web experiences by combining AEM with Adobe\'s Edge Delivery Services (EDS). The pod is building the developer workflows, design systems, and AI-powered personalization capabilities needed to ship high-performing, conversion-focused web experiences at speed. As one of the more forward-leaning pods in the program, Drago also serves as a proving ground for patterns that may extend to other delivery pods.',
                 podTags: ['AEM + EDS', 'Agentic Web', 'AI Deployment'],
@@ -1711,7 +1761,13 @@
                 ]
             },
             'tier-3-4b': {
-                name: 'Tier 3.4b: Horizon', id: '3.4b', adobeContact: 'Ben Durst, Ryan Dietz',
+                name: 'Tier 3.4b: Horizon', id: '3.4b', adobeContact: 'Ben Durst, Ryan Dietz', rolesToFill: 6,
+                roleBreakdown: [
+                    { role: 'Innovation Lab Lead', filled: 0, total: 1 },
+                    { role: 'Value Engineer', filled: 0, total: 1 },
+                    { role: 'AI Developer', filled: 2, total: 2 },
+                    { role: 'QA', filled: 1, total: 1 }
+                ],
                 summary: 'Horizon runs experimental AI and agentic pilot programs for clients, validating emerging Adobe AI capabilities.',
                 overviewDescription: 'Tier 3.4b, known internally as Horizon, is the program\'s testing ground for experimental AI and agentic pilot programs, validating emerging Adobe AI capabilities like GenStudio and Firefly in real client contexts. This pod prioritizes speed and learning over polish — rapidly prototyping new capabilities, quantifying business ROI, and building repeatable playbooks that other pods can adopt once an approach proves out. Its findings directly inform how the broader program approaches AI adoption.',
                 podTags: ['GenStudio', 'Firefly', 'AI Prototyping'],
@@ -1758,7 +1814,13 @@
                 ]
             },
             'tier-3-4c': {
-                name: 'Tier 3.4c: Fast Track', id: '3.4c', adobeContact: 'Brent Rudewick',
+                name: 'Tier 3.4c: Fast Track', id: '3.4c', adobeContact: 'Brent Rudewick', rolesToFill: 5,
+                roleBreakdown: [
+                    { role: 'Workfront Developer', filled: 0, total: 2 },
+                    { role: 'AI Developer', filled: 0, total: 1 },
+                    { role: 'AEM Developer', filled: 0, total: 1 },
+                    { role: 'Business Analyst', filled: 0, total: 1 }
+                ],
                 summary: 'Tier 3.4c (Fast Track) delivers rapid Workfront and AEM Assets implementations focused on work management automation.',
                 overviewDescription: 'Tier 3.4c, known internally as Fast Track, delivers rapid Workfront and AEM Assets implementations focused on standing up work management automation quickly. The pod prioritizes speed-to-value: intake and workflow processes go live fast, intelligent tagging and organization are layered into AEM Assets, and agentic/AI-assisted automation reduces manual work management overhead. Sustainable governance and operating procedures are established alongside the technical build so the automation holds up long-term.',
                 podTags: ['Workfront', 'AEM Assets', 'Workflow Automation'],
@@ -2006,14 +2068,38 @@
 
         function renderResourcingStatusBlock(pod) {
             const c = countByStatus(pod);
-            const hiring = c.adobevetting + c.interviewing + c.defining + c.onhold;
+            const rolesToFill = pod.rolesToFill || 0;
+            const profilesToReview = c.adobevetting;
+            const breakdown = pod.roleBreakdown || [];
+
+            const totalFilled = breakdown.reduce((s, r) => s + r.filled, 0);
+            const totalRoles = breakdown.reduce((s, r) => s + r.total, 0);
+            const overallPct = totalRoles > 0 ? Math.round((totalFilled / totalRoles) * 100) : 100;
+
+            const rowsHtml = breakdown.map(r => {
+                const pct = r.total > 0 ? Math.min(Math.round((r.filled / r.total) * 100), 100) : 100;
+                const isFull = r.filled >= r.total;
+                return `
+                    <div class="role-bar-row">
+                        <div class="role-bar-label">${r.role}</div>
+                        <div class="role-bar-track"><div class="role-bar-fill ${isFull ? 'full' : ''}" style="width:${pct}%"></div></div>
+                        <div class="role-bar-count ${isFull ? 'full' : ''}">${r.filled}/${r.total}</div>
+                    </div>
+                `;
+            }).join('');
+
             return `
                 <div class="hero-resourcing-label">Resourcing Status</div>
-                <div class="status-grid">
-                    <div class="status-box overall"><div class="status-value">${c.total}</div><div class="status-desc">Total Roles</div></div>
-                    <div class="status-box filled"><div class="status-value">${c.filled}</div><div class="status-desc">Filled/Vetted</div></div>
-                    <div class="status-box hiring"><div class="status-value">${hiring}</div><div class="status-desc">Hiring / Defining</div></div>
-                    <div class="status-box overall"><div class="status-value">${Math.round((c.filled / c.total) * 100)}%</div><div class="status-desc">Allocation</div></div>
+                <div class="status-grid status-grid-2">
+                    <div class="status-box overall"><div class="status-value">${rolesToFill}</div><div class="status-desc">Total Roles to Fill</div></div>
+                    <div class="status-box hiring"><div class="status-value">${profilesToReview}</div><div class="status-desc"># of Additional Profiles Ready for Review</div></div>
+                </div>
+                <div class="role-breakdown-card">
+                    <div class="role-breakdown-header">
+                        <span>Vetted &amp; Ready to Start, by Role</span>
+                        <span class="role-breakdown-pct">${overallPct}%</span>
+                    </div>
+                    <div class="role-bars">${rowsHtml}</div>
                 </div>
             `;
         }
