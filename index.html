@@ -32,8 +32,13 @@
             left: 0;
             top: 0;
         }
-        .sidebar-logo { padding: 36px 24px 28px; }
+        .sidebar-logo { padding: 36px 24px 28px; display: flex; align-items: center; justify-content: space-between; }
         .sidebar-logo svg { display: block; height: 22px; width: auto; }
+        .hamburger-btn {
+            display: none; background: none; border: none; cursor: pointer; padding: 6px;
+            color: #101128; align-items: center; justify-content: center;
+        }
+        .hamburger-btn svg { width: 24px; height: 24px; }
         .sidebar-nav-scroll { flex: 1; overflow-y: auto; }
         .sidebar-nav { list-style: none; padding: 0 12px; }
         .sidebar-nav button {
@@ -82,23 +87,28 @@
         .header h1 { font-size: 40px; font-weight: 600; color: #1F1F1F; margin-bottom: 12px; line-height: 1.2; }
         .header p.subhead { font-size: 15px; color: #505050; line-height: 1.6; max-width: 900px; }
 
-        .content { flex: 1; overflow-y: auto; padding: 48px 24px; }
+        .content { flex: 1; overflow-y: auto; padding: 24px 24px 48px; }
         .container { max-width: 1400px; margin: 0 auto; }
 
         /* Summary Page - true cards, 3 columns */
         /* Global Chart Cards (top of summary page) */
         .metrics-grid {
             display: grid;
-            grid-template-columns: 1.6fr 1fr;
+            grid-template-columns: 1.3fr 0.8fr 1fr;
             gap: 24px;
             margin-bottom: 32px;
             align-items: stretch;
         }
+        @media (max-width: 1100px) { .metrics-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 900px) { .metrics-grid { grid-template-columns: 1fr; } }
         .metric-card {
             background-color: #FFFFFF; border-radius: 12px; padding: 28px; border: 1px solid #EDEDED;
             box-shadow: 0 4px 10px rgba(20, 20, 43, 0.07), 0 14px 30px rgba(20, 20, 43, 0.08);
         }
+        .metric-card-centered { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .metric-card-centered .chart-card-header { width: 100%; justify-content: center; margin-bottom: 18px; }
+        .big-stat-number { font-size: 56px; font-weight: 800; color: #0328D1; line-height: 1; margin-bottom: 12px; }
+        .big-stat-label { font-size: 13px; color: #6B6B7B; max-width: 180px; }
         .chart-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; gap: 16px; }
         .chart-card-title { font-size: 15px; font-weight: 700; color: #101128; }
         .chart-card-stat { text-align: right; flex-shrink: 0; }
@@ -112,6 +122,7 @@
         .chart-legend-swatch.interviewing { background: #9472D6; }
         .chart-legend-swatch.defining { background: #6311CB; }
         .chart-legend-swatch.onhold { background: #DD3039; }
+        .chart-legend-swatch.remaining { background: #E4E4E4; }
 
         /* Stacked bar rows */
         .bar-rows { display: flex; flex-direction: column; gap: 14px; }
@@ -125,6 +136,7 @@
         .bar-seg.interviewing { background: #9472D6; height: 100%; }
         .bar-seg.defining { background: #6311CB; height: 100%; }
         .bar-seg.onhold { background: #DD3039; height: 100%; }
+        .bar-seg.remaining { background: #E4E4E4; height: 100%; }
         .bar-row-count { width: 46px; flex-shrink: 0; text-align: right; font-size: 12px; color: #8A8A9A; font-weight: 600; }
 
         /* Donut chart */
@@ -182,6 +194,8 @@
         .pod-card-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
         .pod-pill { background: #EDEDF2; color: #33333F; padding: 6px 13px; border-radius: 20px; font-size: 12.5px; font-weight: 600; }
         .pod-card-divider { border: none; border-top: 1px solid #EEEEEE; margin: 0 -28px 16px; }
+        .header-divider { border: none; border-top: 1px solid #E4E4E4; margin: 20px 0 0; }
+        .tab-nav-divider { border: none; border-top: 1px solid #E4E4E4; margin: 0 0 28px; }
         .pod-card-link {
             display: flex; align-items: center; justify-content: space-between; color: #0328D1;
             font-weight: 700; font-size: 14px; cursor: pointer;
@@ -231,7 +245,7 @@
         .status-desc { font-size: 12px; color: #505050; font-weight: 500; }
 
         /* Tabs */
-        .tab-nav { display: flex; gap: 12px; margin: 32px 0; flex-wrap: wrap; }
+        .tab-nav { display: flex; gap: 12px; margin: 12px 0 28px; flex-wrap: wrap; }
         .tab-btn {
             display: flex; align-items: center; gap: 8px; padding: 10px 18px; background-color: #FFFFFF;
             border: 1px solid #E4E4E4; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600;
@@ -251,7 +265,7 @@
         }
         .card h3 { font-size: 18px; font-weight: 600; color: #1F1F1F; margin-bottom: 16px; }
 
-        .overview-description { font-size: 17px; line-height: 1.65; color: #33333F; margin-bottom: 28px; max-width: 900px; }
+        .overview-description { font-size: 17px; line-height: 1.65; color: #33333F; margin-bottom: 0; max-width: 900px; }
 
         .objective-item { display: flex; gap: 12px; margin-bottom: 12px; font-size: 15px; color: #1F1F1F; }
         .objective-bullet { color: #0328D1; font-weight: 700; margin-top: 2px; }
@@ -493,6 +507,11 @@
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #E4E4E4; }
             .main { margin-left: 0; }
+            .hamburger-btn { display: flex; }
+            .sidebar-nav-scroll { display: none; border-top: 1px solid #E4E4E4; }
+            .sidebar.nav-open .sidebar-nav-scroll { display: block; }
+            .sidebar-footer { display: none; }
+            .sidebar.nav-open .sidebar-footer { display: block; }
         }
     </style>
 </head>
@@ -544,7 +563,7 @@
     </svg>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebarEl">
         <div class="sidebar-logo">
             <svg viewBox="0 0 664 83" xmlns="http://www.w3.org/2000/svg">
                 <path d="M45.5287 37.2773H0L45.5287 82.8063V37.2773Z" fill="#F23A1D"/>
@@ -555,8 +574,11 @@
                 <path d="M563.918 82.7517H489.603V0H507.258V66.16H563.87L563.918 82.7604V82.7517Z" fill="#040E4B"/>
                 <path d="M663.467 82.7517H582.916V0H660.063V17.0313H600.428V30.7043H639.433V47.3047H600.428V66.16H663.469L663.467 82.7517Z" fill="#040E4B"/>
             </svg>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+            </button>
         </div>
-        <div class="sidebar-nav-scroll">
+        <div class="sidebar-nav-scroll" id="sidebarNavScroll">
             <ul class="sidebar-nav" id="sidebarNav"></ul>
         </div>
         <div class="sidebar-footer">
@@ -578,6 +600,7 @@
                     </div>
                     <div class="adobe-contact-card" id="adobeContactCard" style="display:none;"></div>
                 </div>
+                <hr class="header-divider">
             </div>
         </div>
 
@@ -1903,7 +1926,7 @@
                 if (key === 'summary') {
                     return `<li><button class="pod-nav-btn secondary-nav ${key === activePod ? 'active' : ''}" data-pod="${key}">
                         <svg class="icon icon-sm"><use href="#icon-home"/></svg><span>${pod.name || 'Summary'}</span>
-                    </button></li>`;
+                    </button></li><li><hr class="sidebar-nav-divider"></li>`;
                 }
                 return `<li><button class="pod-nav-btn ${key === activePod ? 'active' : ''}" data-pod="${key}">${pod.name || 'Summary'}</button></li>`;
             }).join('') + `
@@ -1917,6 +1940,7 @@
                     activePod = e.currentTarget.dataset.pod;
                     renderSidebar(); renderPage();
                     document.querySelector('.content').scrollTop = 0;
+                    document.getElementById('sidebarEl').classList.remove('nav-open');
                 });
             });
         }
@@ -1950,13 +1974,20 @@
 
             // Global roll-up metrics
             let totalFilled = 0, totalAdobeVetting = 0, totalInterviewing = 0, totalDefining = 0, totalOnhold = 0, totalRoles = 0;
+            let totalToFill = 0, totalFilledOfTarget = 0, totalProfilesToReview = 0;
             podList.forEach(([key, pod]) => {
                 const c = countByStatus(pod);
                 totalFilled += c.filled; totalAdobeVetting += c.adobevetting; totalInterviewing += c.interviewing;
                 totalDefining += c.defining; totalOnhold += c.onhold; totalRoles += c.total;
+                totalProfilesToReview += c.adobevetting;
+
+                const breakdown = pod.roleBreakdown || [];
+                totalToFill += pod.rolesToFill || 0;
+                totalFilledOfTarget += breakdown.reduce((s, r) => s + r.filled, 0);
             });
             const fillRate = totalRoles > 0 ? Math.round((totalFilled / totalRoles) * 100) : 0;
             const pct = (n) => totalRoles > 0 ? Math.round((n / totalRoles) * 100) : 0;
+            const targetFillRate = totalToFill > 0 ? Math.round((totalFilledOfTarget / totalToFill) * 100) : 100;
 
             const STATUS_COLORS = {
                 filled: '#0328D1', adobevetting: '#0391F2', interviewing: '#9472D6', defining: '#6311CB', onhold: '#DD3039'
@@ -1968,34 +1999,37 @@
                     <div class="metric-card">
                         <div class="chart-card-header">
                             <div class="chart-card-title">Roles Filled by Pod</div>
-                            <div class="chart-card-stat"><div class="big">${totalFilled}/${totalRoles}</div><div class="small">roles filled/vetted</div></div>
+                            <div class="chart-card-stat"><div class="big">${totalFilledOfTarget}/${totalToFill}</div><div class="small">roles filled/vetted</div></div>
                         </div>
                         <div class="chart-legend">
                             <div class="chart-legend-item"><span class="chart-legend-swatch filled"></span>Filled/Vetted</div>
-                            <div class="chart-legend-item"><span class="chart-legend-swatch adobevetting"></span>Adobe Vetting</div>
-                            <div class="chart-legend-item"><span class="chart-legend-swatch interviewing"></span>Interviewing</div>
-                            <div class="chart-legend-item"><span class="chart-legend-swatch defining"></span>Defining</div>
-                            <div class="chart-legend-item"><span class="chart-legend-swatch onhold"></span>On-Hold</div>
+                            <div class="chart-legend-item"><span class="chart-legend-swatch remaining"></span>Remaining</div>
                         </div>
                         <div class="bar-rows">
                             ${podList.map(([key, pod]) => {
-                                const c = countByStatus(pod);
-                                const segPct = (n) => c.total ? (n / c.total * 100) : 0;
+                                const breakdown = pod.roleBreakdown || [];
+                                const podFilled = breakdown.reduce((s, r) => s + r.filled, 0);
+                                const podToFill = pod.rolesToFill || 0;
+                                const filledSegPct = podToFill > 0 ? Math.min((podFilled / podToFill) * 100, 100) : 100;
                                 return `
                                     <div class="bar-row">
                                         <div class="bar-row-label">${pod.id}</div>
                                         <div class="bar-row-track">
-                                            <div class="bar-seg filled" style="width:${segPct(c.filled)}%"></div>
-                                            <div class="bar-seg adobevetting" style="width:${segPct(c.adobevetting)}%"></div>
-                                            <div class="bar-seg interviewing" style="width:${segPct(c.interviewing)}%"></div>
-                                            <div class="bar-seg defining" style="width:${segPct(c.defining)}%"></div>
-                                            <div class="bar-seg onhold" style="width:${segPct(c.onhold)}%"></div>
+                                            <div class="bar-seg filled" style="width:${filledSegPct}%"></div>
+                                            <div class="bar-seg remaining" style="width:${100 - filledSegPct}%"></div>
                                         </div>
-                                        <div class="bar-row-count">${c.filled}/${c.total}</div>
+                                        <div class="bar-row-count">${podFilled}/${podToFill}</div>
                                     </div>
                                 `;
                             }).join('')}
                         </div>
+                    </div>
+                    <div class="metric-card metric-card-centered">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title">Profiles Ready to Review</div>
+                        </div>
+                        <div class="big-stat-number">${totalProfilesToReview}</div>
+                        <div class="big-stat-label">Total number of profiles ready to review</div>
                     </div>
                     <div class="metric-card">
                         <div class="chart-card-header">
@@ -2089,7 +2123,6 @@
             }).join('');
 
             return `
-                <div class="hero-resourcing-label">Resourcing Status</div>
                 <div class="status-grid status-grid-2">
                     <div class="status-box overall"><div class="status-value">${rolesToFill}</div><div class="status-desc">Total Roles to Fill</div></div>
                     <div class="status-box hiring"><div class="status-value">${profilesToReview}</div><div class="status-desc"># of Additional Profiles Ready for Review</div></div>
@@ -2181,19 +2214,22 @@
                     <button class="tab-btn" data-tab="activations"><svg class="icon"><use href="#icon-rocket"/></svg><span>Activations</span></button>
                     <button class="tab-btn" data-tab="discussions"><svg class="icon"><use href="#icon-chat"/></svg><span>Recent Discussions</span></button>
                 </div>
+                <hr class="tab-nav-divider">
 
                 <div class="tab-content active" id="tab-overview">
-                    <p class="overview-description">${pod.overviewDescription || pod.summary}</p>
                     <div class="card">
+                        <h3>About this Pod</h3>
+                        <p class="overview-description">${pod.overviewDescription || pod.summary}</p>
+                    </div>
+                    <div class="card">
+                        <h3>Resourcing Status</h3>
                         ${renderResourcingStatusBlock(pod)}
                     </div>
                     <div class="card">
                         <h3>Objectives</h3>
                         ${pod.objectives.map(obj => `<div class="objective-item"><span class="objective-bullet">&bull;</span><span>${obj}</span></div>`).join('')}
-                    </div>
-                    <div class="success-card">
-                        <h3>Success Criteria</h3>
-                        ${pod.successCriteria.map(c => `<div class="success-item"><svg class="icon success-check"><use href="#icon-check-circle"/></svg><span>${c}</span></div>`).join('')}
+                        <h3 style="margin-top: 28px;">Success Criteria</h3>
+                        ${pod.successCriteria.map(c => `<div class="objective-item"><span class="objective-bullet">&bull;</span><span>${c}</span></div>`).join('')}
                     </div>
                 </div>
 
@@ -2529,6 +2565,10 @@
 
         renderSidebar();
         renderPage();
+
+        document.getElementById('hamburgerBtn').addEventListener('click', () => {
+            document.getElementById('sidebarEl').classList.toggle('nav-open');
+        });
     </script>
 </body>
 </html>
