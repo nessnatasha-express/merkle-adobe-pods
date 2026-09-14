@@ -376,6 +376,10 @@
 
         /* Sidebar secondary nav (Resource Inventory) */
         .sidebar-nav-divider { border: none; border-top: 1px solid #E4E4E4; margin: 12px 16px; }
+        .sidebar-section-label {
+            font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+            color: #ABABBB; padding: 4px 16px 8px;
+        }
         .sidebar-nav button.secondary-nav svg { color: #8A8A9A; }
         .sidebar-nav button.secondary-nav.active svg { color: #0328D1; }
         .sidebar-nav button.secondary-nav { display: flex; align-items: center; gap: 10px; }
@@ -1657,18 +1661,20 @@
                 roleBreakdown: [
                     { role: 'Solution Architect', filled: 0, total: 4 }
                 ],
-                summary: 'Tier 3.2a delivers specialized Adobe Consulting Services pre-sales engagements, focusing on AEM and AJO architecture design.',
-                overviewDescription: 'Tier 3.2a is Adobe Consulting Services\' dedicated pre-sales pod, engaging prospective clients with deep AEM and AJO solution architecture before a full engagement is signed. This team designs technical solutions that demonstrate integration depth and platform value, then builds the business case that turns strategic interest into a committed, longer-term engagement. Because this work happens ahead of contract signature, the pod operates with tight turnaround expectations and close coordination with Adobe\'s own pre-sales organization.',
-                podTags: ['AEM Architecture', 'AJO Architecture', 'Pre-Sales'],
+                summary: 'Tier 3.2a delivers specialized Adobe Consulting Services pre-sales engagements across the full Adobe Enterprise Technology portfolio, with a focus on solutions spanning Content Supply Chain and Data & Journeys.',
+                overviewDescription: 'Tier 3.2a is Adobe Consulting Services\' dedicated pre-sales pod, engaging prospective clients with deep solution architecture across the full Adobe Enterprise Technology portfolio, with particular focus on Content Supply Chain and Data & Journeys solutions. This team designs technical solutions that demonstrate integration depth and platform value, then builds the business case that turns strategic interest into a committed, longer-term engagement. Because this work happens ahead of contract signature, the pod operates with tight turnaround expectations and close coordination with Adobe\'s own pre-sales organization. These roles may require travel, must be based in the US or Canada, and work side-by-side with sellers throughout the sales cycle. Candidates need a strong functional understanding across the full Adobe solution portfolio, with the ability to tie client objectives and pain points to tangible outcomes that Adobe Consulting Services (ACS) can support.',
+                podTags: ['Content Supply Chain', 'Data & Journeys', 'Adobe Enterprise Technologies', 'Pre-Sales'],
                 locationDefault: 'TBD', industryContext: 'ACS Pre-Sales',
                 objectives: [
-                    'Design solution architectures for AEM and AJO implementations',
-                    'Focus on integration depth and platform optimization',
-                    'Partner with business stakeholders to ensure strategic alignment',
-                    'Build business cases that drive engagement expansion'
+                    'Lead business and technical discovery and workshop sessions across multiple Adobe products',
+                    'Craft solution architectures using the Adobe DX Cloud suite tailored to customer objectives',
+                    'Develop recommendations, proposals, and scope-of-work documents for Adobe Consulting engagements',
+                    'Present proposals to executive-level customers',
+                    'Identify critical project dependencies, gaps, and risks',
+                    'Continuously improve the Solution Architecture team\'s methodologies and customer-facing collateral'
                 ],
                 resources: [
-                    { role: 'Solution Architect', desc: 'Solution design & AEM/AJO architecture', people: [
+                    { role: 'Solution Architect', desc: 'Solution design across Adobe Enterprise Technologies', people: [
                         { name: 'Raymond Blaisdell', status: 'adobevetting' },
                         { name: 'Jason Ciapa', status: 'adobevetting' },
                         { name: 'Nicolle Naylor', status: 'adobevetting' },
@@ -1677,15 +1683,26 @@
                 ],
                 activations: {
                     planning: [
-                        { checked: true, label: 'Requirements Assessment', desc: 'Understand client business goals and technical requirements' },
-                        { checked: true, label: 'Solution Design', desc: 'Design optimal AEM/AJO architecture for client use cases' },
-                        { checked: true, label: 'Business Case', desc: 'Quantify benefits and build investment justification' }
+                        { checked: true, label: 'Discovery', desc: 'Uncover client business goals, pain points, and current-state environment' },
+                        { checked: true, label: 'Workshop Facilitation', desc: 'Lead collaborative sessions with client stakeholders across business and IT' },
+                        { checked: true, label: 'Value Framework', desc: 'Articulate the business value case for Adobe investment' },
+                        { checked: true, label: 'High-Level Optimization Assessment', desc: 'Assess current platform usage and identify optimization opportunities' },
+                        { checked: true, label: 'People & Process Recommendations', desc: 'Recommend organizational and process changes to support platform adoption' },
+                        { checked: true, label: 'Business Case Development', desc: 'Quantify ROI and build the financial justification for investment' },
+                        { checked: true, label: 'Iterative Roadmapping', desc: 'Build and refine a phased roadmap aligning technology investment to business goals' },
+                        { checked: true, label: 'Coordination with Technical Resources', desc: 'Partner with deeper technical resources to validate solution design and opportunity design' }
                     ], adoption: [], execution: []
                 },
+                outOfScope: [
+                    'Hands-on keyboard work',
+                    'Highly technical support',
+                    'Prototyping',
+                    'Try Before You Buy (TBYB) engagements'
+                ],
                 successCriteria: [
                     'Architecture document accepted by client stakeholders',
                     'Business case built; ROI clearly articulated',
-                    '75% of pre-sales engagements convert to implementation contracts',
+                    '40% of pre-sales engagements convert to implementation contracts',
                     'Client satisfaction with technical approach exceeds 4.0/5.0'
                 ],
                 discussions: [
@@ -1786,6 +1803,27 @@
                 discussions: [
                     { when: '9/14/26', what: 'Budget reallocation: 3.3 headcount to 3.4 consideration', who: 'Natasha Ness & Morgan', nextStep: 'Await decision on moving 2 open roles to 3.4 based on pod priorities' }
                 ]
+            },
+            'tier-3-4-shared': {
+                name: 'Tier 3.4: Shared Model', id: '3.4', rolesToFill: 0,
+                roleBreakdown: [],
+                summary: 'A shared services layer coordinating governance, tooling, and enablement across Drago, Horizon, and Fast Track.',
+                overviewDescription: 'Tier 3.4 Shared Model is the coordination layer sitting across the three 3.4 sub-pods — Drago, Horizon, and Fast Track. Rather than duplicating tooling, governance, and enablement work in each sub-pod, this shared model centralizes common infrastructure, staffing patterns, and lessons learned so each sub-pod can move faster on its own specialized focus. Details on staffing and scope for this shared model are still being defined.',
+                podTags: ['Shared Services', 'Cross-Pod Governance', 'Enablement'],
+                locationDefault: 'TBD', industryContext: 'Cross-3.4 Shared Services',
+                objectives: [
+                    'Define a shared governance and staffing model across Drago, Horizon, and Fast Track',
+                    'Establish common tooling, environments, and enablement resources for all 3.4 sub-pods',
+                    'Reduce duplicate overhead by centralizing cross-cutting functions where it makes sense',
+                    'Share lessons learned across sub-pods to accelerate delivery'
+                ],
+                resources: [],
+                activations: { planning: [], adoption: [], execution: [] },
+                successCriteria: [
+                    'Shared model scoped and validated with Adobe stakeholders across all three 3.4 sub-pods',
+                    'Common tooling and enablement resources adopted by Drago, Horizon, and Fast Track'
+                ],
+                discussions: []
             },
             'tier-3-4a': {
                 name: 'Tier 3.4a: Drago', id: '3.4a', adobeContact: 'Ben Durst, Reggie Walke', rolesToFill: 7,
@@ -1996,7 +2034,10 @@
                         <svg class="icon icon-sm"><use href="#icon-home"/></svg><span>${pod.name || 'Summary'}</span>
                     </button></li><li><hr class="sidebar-nav-divider"></li>`;
                 }
-                return `<li><button class="pod-nav-btn ${key === activePod ? 'active' : ''}" data-pod="${key}">${pod.name || 'Summary'}</button></li>`;
+                const prefix = (key === 'tier-3-4-shared')
+                    ? `<li><hr class="sidebar-nav-divider"></li><li><div class="sidebar-section-label">Tier 3.4 Options</div></li>`
+                    : '';
+                return `${prefix}<li><button class="pod-nav-btn ${key === activePod ? 'active' : ''}" data-pod="${key}">${pod.name || 'Summary'}</button></li>`;
             }).join('') + `
                 <li><hr class="sidebar-nav-divider"></li>
                 <li><button class="pod-nav-btn secondary-nav ${activePod === 'resource-inventory' ? 'active' : ''}" data-pod="resource-inventory">
