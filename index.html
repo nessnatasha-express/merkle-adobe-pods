@@ -246,6 +246,14 @@
 
         /* Tabs */
         .tab-nav { display: flex; gap: 12px; margin: 12px 0 28px; flex-wrap: wrap; }
+        .view-toggle { display: flex; gap: 4px; background: #F0F0F4; border-radius: 8px; padding: 4px; width: fit-content; margin-bottom: 24px; }
+        .view-toggle-btn {
+            display: flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 6px; border: none;
+            background: transparent; color: #6B6B7B; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease;
+        }
+        .view-toggle-btn:hover { color: #1F1F1F; }
+        .view-toggle-btn.active { background: #FFFFFF; color: #0328D1; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .resources-table th, .resources-table td { vertical-align: top; }
         .tab-btn {
             display: flex; align-items: center; gap: 8px; padding: 10px 18px; background-color: #FFFFFF;
             border: 1px solid #E4E4E4; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600;
@@ -313,7 +321,7 @@
         .hiring-tile {
             background-color: #FFFFFF; padding: 24px 20px; border-radius: 12px; border: 1.5px dashed #D7D7D7;
             display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center;
-            transition: all 0.2s ease;
+            transition: all 0.2s ease; cursor: pointer;
         }
         .hiring-tile:hover { border-color: #0328D1; }
         .hiring-avatar {
@@ -1499,6 +1507,39 @@
             document.getElementById('profileModal').classList.remove('open');
         }
 
+        function openRoleInfoModal(role, desc, toolsStr, market, podKey) {
+            const pod = pods[podKey] || {};
+            const tools = toolsStr ? toolsStr.split('|').filter(Boolean) : [];
+
+            const content = document.getElementById('modalContentPanel');
+            content.innerHTML = `
+                <div class="modal-header-row">
+                    <div class="modal-avatar" style="background: #2A2A40;">
+                        <svg class="icon icon-lg" style="width: 32px; height: 32px; color: #8A8AFF;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2c2.3.4 4 2.4 4 4.8"/></svg>
+                    </div>
+                    <div class="modal-header-text">
+                        <div class="modal-name">${role}</div>
+                        <div class="modal-role">Open Role — ${pod.name || ''}</div>
+                    </div>
+                </div>
+                <hr class="modal-divider">
+                <div class="modal-section-label">Description</div>
+                <div class="modal-summary">${desc || 'Details pending.'}</div>
+                ${tools.length ? `
+                    <div class="modal-section-label">Tools</div>
+                    <div class="modal-tags">
+                        ${tools.map(t => `<span class="modal-tag">${t}</span>`).join('')}
+                    </div>
+                ` : ''}
+                <div class="modal-section-label">Market</div>
+                <div class="modal-footer-tags">
+                    <span class="modal-location-tag"><svg class="icon icon-sm"><use href="#icon-pin"/></svg>${market || 'TBD'}</span>
+                </div>
+            `;
+
+            document.getElementById('profileModal').classList.add('open');
+        }
+
         document.getElementById('profileModal').addEventListener('click', (e) => {
             if (e.target.id === 'profileModal') closeProfileModal();
         });
@@ -1805,20 +1846,57 @@
                 ]
             },
             'tier-3-4-shared': {
-                name: 'Tier 3.4: Shared Model', id: '3.4', rolesToFill: 0,
-                roleBreakdown: [],
-                summary: 'A shared services layer coordinating governance, tooling, and enablement across Drago, Horizon, and Fast Track.',
-                overviewDescription: 'Tier 3.4 Shared Model is the coordination layer sitting across the three 3.4 sub-pods — Drago, Horizon, and Fast Track. Rather than duplicating tooling, governance, and enablement work in each sub-pod, this shared model centralizes common infrastructure, staffing patterns, and lessons learned so each sub-pod can move faster on its own specialized focus. Details on staffing and scope for this shared model are still being defined.',
-                podTags: ['Shared Services', 'Cross-Pod Governance', 'Enablement'],
-                locationDefault: 'TBD', industryContext: 'Cross-3.4 Shared Services',
+                name: 'Tier 3.4: Shared Model', id: '3.4', rolesToFill: 16,
+                roleBreakdown: [
+                    { role: 'Lead Agentic Architect', filled: 0, total: 2 },
+                    { role: 'Innovation Lab Lead', filled: 0, total: 2 },
+                    { role: 'Design Engineer', filled: 0, total: 1 },
+                    { role: 'Lead Developer', filled: 0, total: 6 },
+                    { role: 'Product Manager', filled: 0, total: 1 },
+                    { role: 'Business Analyst', filled: 0, total: 2 },
+                    { role: 'QA', filled: 0, total: 2 }
+                ],
+                summary: 'A shared resource pool supporting the needs of all three Tier 3.4 initiatives — Drago, Horizon, and Fast Track — across Content Supply Chain and Data & Journeys.',
+                overviewDescription: 'Tier 3.4 Shared Model supports the needs of all three initiatives within Tier 3.4 — Drago, Horizon, and Fast Track. All three are primarily Try Before You Buy (TBYB) engagements: development-heavy work covering a wide array of solutions across Content Supply Chain and Data & Journeys, delivered in both agentic and non-agentic ways. Rather than each sub-pod staffing and scoping this work independently, this shared model pools staffing and delivery patterns across all three so specialized capacity can flex to wherever it\'s needed most.',
+                podTags: ['Content Supply Chain', 'Data & Journeys', 'Try Before You Buy (TBYB)', 'Agentic & Non-Agentic Solutions'],
+                locationDefault: 'Mixed Onshore/Offshore', industryContext: 'Cross-3.4 Shared Services',
                 objectives: [
-                    'Define a shared governance and staffing model across Drago, Horizon, and Fast Track',
+                    'Define a shared staffing and governance model across Drago, Horizon, and Fast Track',
                     'Establish common tooling, environments, and enablement resources for all 3.4 sub-pods',
                     'Reduce duplicate overhead by centralizing cross-cutting functions where it makes sense',
                     'Share lessons learned across sub-pods to accelerate delivery'
                 ],
-                resources: [],
-                activations: { planning: [], adoption: [], execution: [] },
+                resources: [
+                    { role: 'Lead Agentic Architect', desc: 'Leads agentic solution architecture for Content Supply Chain initiatives, designing how AI agents plug into content creation and management workflows.', tools: ['Adobe GenStudio', 'Firefly Services', 'AI Agent Orchestration', 'Content Supply Chain Tooling'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Lead Agentic Architect', desc: 'Leads agentic solution architecture for Data & Journeys initiatives, designing how AI agents plug into data activation and journey orchestration workflows.', tools: ['Adobe Experience Platform (AEP)', 'Real-Time CDP', 'Adobe Journey Optimizer (AJO)', 'AI Agent Orchestration'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Innovation Lab Lead', desc: 'Runs workshops, ROI modeling, and change activation efforts that help clients understand and adopt new solution patterns before committing to a full engagement.', tools: ['Miro', 'PowerPoint', 'ROI Modeling Frameworks'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Innovation Lab Lead', desc: 'Runs workshops, ROI modeling, and change activation efforts that help clients understand and adopt new solution patterns before committing to a full engagement.', tools: ['Miro', 'PowerPoint', 'ROI Modeling Frameworks'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Design Engineer', desc: 'Supports design-to-code work across all three 3.4 initiatives, translating UX/UI concepts into functioning front-end components.', tools: ['Figma', 'Adobe Express', 'Front-End Frameworks'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Lead Developer', desc: 'Leads development within the Workfront ecosystem, building work-management automation and integrations.', tools: ['Adobe Workfront', 'Workfront Fusion', 'Workfront Planning'], location: 'Offshore (India)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Lead Developer', desc: 'Leads development within the AEP ecosystem, building data and activation solutions.', tools: ['Adobe Experience Platform (AEP)', 'Real-Time CDP', 'Data Collection'], location: 'Offshore (India)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Lead Developer', desc: 'Leads development within the AEM ecosystem, building content and site delivery solutions.', tools: ['AEM Sites', 'AEM as a Cloud Service', 'Edge Delivery Services (EDS)'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Lead Developer', desc: 'Leads development within the AEM ecosystem, building content and site delivery solutions.', tools: ['AEM Sites', 'AEM as a Cloud Service', 'Edge Delivery Services (EDS)'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Lead Developer', desc: 'Focuses on back-end engineering with an AI lens — building the services and integrations that power agentic solutions.', tools: ['Back-End Frameworks', 'AI/LLM Integration', 'APIs'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Lead Developer', desc: 'Focuses on back-end engineering with an AI lens — building the services and integrations that power agentic solutions.', tools: ['Back-End Frameworks', 'AI/LLM Integration', 'APIs'], location: 'Offshore (India)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Product Manager', desc: 'Owns product direction across all three 3.4 initiatives, prioritizing roadmap and coordinating delivery.', tools: ['Jira', 'Workfront Planning', 'Roadmapping Tools'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Business Analyst', desc: 'Gathers and documents requirements for Content Supply Chain solution delivery.', tools: ['Adobe GenStudio', 'Workfront', 'Content Supply Chain Tooling'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'Business Analyst', desc: 'Gathers and documents requirements for Data & Journeys solution delivery.', tools: ['Adobe Experience Platform (AEP)', 'Adobe Journey Optimizer (AJO)', 'Real-Time CDP'], location: 'Onshore (US)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'QA', desc: 'Owns quality assurance and test strategy for Content Supply Chain solution delivery.', tools: ['Test Automation', 'Content QA Tooling'], location: 'Offshore (India)', people: [], openCount: 1, openStatus: 'defining' },
+                    { role: 'QA', desc: 'Owns quality assurance and test strategy for Data & Journeys solution delivery.', tools: ['Test Automation', 'AEP/AJO/RTCDP QA Tooling'], location: 'Offshore (India)', people: [], openCount: 1, openStatus: 'defining' }
+                ],
+                activations: {
+                    planning: [
+                        { checked: true, label: 'Shared Staffing Pool', desc: 'Pool specialized staffing across Drago, Horizon, and Fast Track' },
+                        { checked: true, label: 'Content Supply Chain Solutions', desc: 'Development-heavy solution delivery across Content Supply Chain use cases' },
+                        { checked: true, label: 'Data & Journeys Solutions', desc: 'Development-heavy solution delivery across Data & Journeys use cases' },
+                        { checked: true, label: 'Agentic & Non-Agentic Delivery', desc: 'Support both agentic and non-agentic solution approaches' },
+                        { checked: true, label: 'Try Before You Buy (TBYB) Engagements', desc: 'Delivery support for TBYB engagements across all three 3.4 sub-pods' }
+                    ], adoption: [], execution: []
+                },
+                outOfScope: [
+                    'Long-term, post-TBYB steady-state implementation work',
+                    'Single-initiative dedicated staffing already covered directly within a sub-pod'
+                ],
                 successCriteria: [
                     'Shared model scoped and validated with Adobe stakeholders across all three 3.4 sub-pods',
                     'Common tooling and enablement resources adopted by Drago, Horizon, and Fast Track'
@@ -2047,6 +2125,7 @@
             document.querySelectorAll('.pod-nav-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     activePod = e.currentTarget.dataset.pod;
+                    resourcesViewMode = 'tiles';
                     renderSidebar(); renderPage();
                     document.querySelector('.content').scrollTop = 0;
                     document.getElementById('sidebarEl').classList.remove('nav-open');
@@ -2258,10 +2337,16 @@
             const buckets = { filled: [], adobevetting: [], interviewing: [], defining: [], onhold: [] };
             pod.resources.forEach(res => {
                 res.people.forEach(p => {
-                    if (buckets[p.status]) buckets[p.status].push({ name: p.name, role: res.role, status: p.status });
+                    if (buckets[p.status]) buckets[p.status].push({
+                        name: p.name, role: res.role, status: p.status,
+                        desc: res.desc || '', tools: res.tools || [], location: res.location || p.location || pod.locationDefault || 'Location TBD'
+                    });
                 });
                 if (res.openCount > 0 && buckets[res.openStatus]) {
-                    buckets[res.openStatus].push({ role: res.role, count: res.openCount, status: res.openStatus, isOpen: true });
+                    buckets[res.openStatus].push({
+                        role: res.role, count: res.openCount, status: res.openStatus, isOpen: true,
+                        desc: res.desc || '', tools: res.tools || [], location: res.location || pod.locationDefault || 'Location TBD'
+                    });
                 }
             });
             return buckets;
@@ -2269,8 +2354,12 @@
 
         function renderResourceTile(item, podKey) {
             if (item.isOpen) {
+                const toolsAttr = (item.tools || []).join('|').replace(/'/g, "\\'");
+                const descAttr = (item.desc || '').replace(/'/g, "\\'");
+                const locationAttr = (item.location || '').replace(/'/g, "\\'");
+                const roleAttr = item.role.replace(/'/g, "\\'");
                 return `
-                    <div class="hiring-tile">
+                    <div class="hiring-tile" onclick="openRoleInfoModal('${roleAttr}', '${descAttr}', '${toolsAttr}', '${locationAttr}', '${podKey}')">
                         <div class="hiring-avatar"><svg class="icon icon-lg" style="color:#B7B7B7;"><use href="#icon-users"/></svg></div>
                         <div class="hiring-tile-name">${item.count} Open</div>
                         <div class="hiring-tile-role">${item.role}</div>
@@ -2292,9 +2381,60 @@
             `;
         }
 
-        function renderResourcesTab(pod, podKey) {
+        let resourcesViewMode = 'tiles';
+
+        function setResourcesViewMode(mode) {
+            resourcesViewMode = mode;
+            const pod = pods[activePod];
+            document.getElementById('tab-resources').innerHTML = renderResourcesTab(pod, activePod);
+        }
+
+        function renderResourcesTable(pod, podKey) {
             const buckets = collectResourcesByStatus(pod);
-            return STATUS_SECTIONS.map(section => {
+            const rows = STATUS_SECTIONS.flatMap(section => buckets[section.key] || []);
+            if (!rows.length) return `<div style="padding: 48px 24px; text-align: center; color: #8A8A9A; font-size: 14px;">No resources yet.</div>`;
+            return `
+                <table class="discussions-table resources-table">
+                    <thead><tr><th>Name</th><th>Role</th><th>Status</th><th>Description</th><th>Tools</th><th>Market</th></tr></thead>
+                    <tbody>
+                        ${rows.map(item => {
+                            const nameCell = item.isOpen
+                                ? `<span class="inventory-name-open">${item.count} Open</span>`
+                                : `<span class="inventory-name-link" onclick="openProfileModal('${item.name.replace(/'/g, "\\'")}', '${item.role.replace(/'/g, "\\'")}', '${item.status}', '${podKey}')">${item.name}</span>`;
+                            return `
+                                <tr>
+                                    <td>${nameCell}</td>
+                                    <td>${item.role}</td>
+                                    <td><span class="status-tag ${statusPillClass(item.status)}">${statusWord(item.status)}</span></td>
+                                    <td>${item.desc || '—'}</td>
+                                    <td class="inventory-tags-cell">${(item.tools && item.tools.length) ? item.tools.map(t => `<span class="expertise-tag">${t}</span>`).join('') : '—'}</td>
+                                    <td>${item.location || '—'}</td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function renderResourcesTab(pod, podKey) {
+            const toggleHtml = `
+                <div class="view-toggle">
+                    <button class="view-toggle-btn ${resourcesViewMode === 'tiles' ? 'active' : ''}" onclick="setResourcesViewMode('tiles')">
+                        <svg class="icon icon-sm"><use href="#icon-users"/></svg><span>Tiles</span>
+                    </button>
+                    <button class="view-toggle-btn ${resourcesViewMode === 'table' ? 'active' : ''}" onclick="setResourcesViewMode('table')">
+                        <svg class="icon icon-sm"><use href="#icon-clipboard"/></svg><span>Table</span>
+                    </button>
+                </div>
+            `;
+
+            if (resourcesViewMode === 'table') {
+                return toggleHtml + renderResourcesTable(pod, podKey);
+            }
+
+            const buckets = collectResourcesByStatus(pod);
+            const sectionsHtml = STATUS_SECTIONS.map(section => {
                 const items = buckets[section.key];
                 if (!items || !items.length) return '';
                 const tilesHtml = items.map(item => renderResourceTile(item, podKey)).join('');
@@ -2306,6 +2446,7 @@
                     </div>
                 `;
             }).join('');
+            return toggleHtml + sectionsHtml;
         }
 
 
@@ -2709,6 +2850,7 @@
 
         function navigateTo(podKey) {
             activePod = podKey;
+            resourcesViewMode = 'tiles';
             renderSidebar(); renderPage();
             document.querySelector('.content').scrollTop = 0;
         }
