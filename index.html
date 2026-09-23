@@ -94,12 +94,11 @@
         /* Global Chart Cards (top of summary page) */
         .metrics-grid {
             display: grid;
-            grid-template-columns: 1.3fr 0.8fr 1fr;
+            grid-template-columns: 1.6fr 1fr;
             gap: 24px;
             margin-bottom: 32px;
             align-items: stretch;
         }
-        @media (max-width: 1100px) { .metrics-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 900px) { .metrics-grid { grid-template-columns: 1fr; } }
         .metric-card {
             background-color: #FFFFFF; border-radius: 12px; padding: 28px; border: 1px solid #EDEDED;
@@ -614,7 +613,7 @@
         </div>
         <div class="sidebar-footer">
             <div class="sidebar-footer-line strong">Built and managed by the Merkle team</div>
-            <div class="sidebar-footer-line">Last updated September 11, 2026 at 3:00 PM PST</div>
+            <div class="sidebar-footer-line">Last updated September 23, 2026 at 4:00 PM EST</div>
             <div class="sidebar-footer-line">Questions? Contact <a href="mailto:natasha.ness@merkle.com">Natasha Ness</a></div>
         </div>
     </div>
@@ -1443,6 +1442,14 @@
             return name.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
         }
 
+        function formatShortName(name) {
+            const parts = name.trim().split(/\s+/);
+            if (parts.length < 2) return name;
+            const first = parts[0];
+            const lastInitial = parts[parts.length - 1][0];
+            return `${first} ${lastInitial}.`;
+        }
+
         function statusLabel(status) {
             const map = { filled: 'Filled/Vetted', adobevetting: 'Adobe Vetting', interviewing: 'Interviewing', defining: 'Defining', onhold: 'On-Hold' };
             return map[status] || status;
@@ -1555,7 +1562,7 @@
                 name: 'Tier 1: Leadership', id: 'T1', adobeContact: 'Morgan Ritter', rolesToFill: 4,
                 roleBreakdown: [
                     { role: 'Alliance Growth Officer', filled: 1, total: 1 },
-                    { role: 'Lead Strategist', filled: 1, total: 1 },
+                    { role: 'Lead Strategist', filled: 0, total: 1 },
                     { role: 'Multi-Solution Architect', filled: 1, total: 1 },
                     { role: 'Program Manager', filled: 1, total: 1 }
                 ],
@@ -1571,7 +1578,7 @@
                 ],
                 resources: [
                     { role: 'Alliance Growth Officer', desc: 'Pipeline development & account strategy', people: [{ name: 'Peter Rogers', status: 'filled' }], openCount: 0 },
-                    { role: 'Lead Strategist', desc: 'Technical strategy & roadmap development', people: [{ name: 'Uzra Edery', status: 'filled' }], openCount: 0 },
+                    { role: 'Lead Strategist', desc: 'Technical strategy & roadmap development', people: [], openCount: 1, openStatus: 'defining' },
                     { role: 'Multi-Solution Architect', desc: 'Technical orchestration & delivery coordination', people: [{ name: 'Natasha Ness', status: 'filled' }], openCount: 0 },
                     { role: 'Program Manager', desc: 'Program operations & resource coordination', people: [{ name: 'Andrew Wiese', status: 'filled' }], openCount: 0 }
                 ],
@@ -1590,13 +1597,14 @@
                     'Executive-level client satisfaction scores exceed 4.5/5.0'
                 ],
                 discussions: [
-                    { when: '9/10/26', what: 'Clarify Lead Strategist focus area', who: 'Natasha Ness', nextStep: 'Determine if Uzra role needs realignment or hire' }
+                    { when: '9/10/26', what: 'Clarify Lead Strategist focus area', who: 'Natasha Ness', nextStep: 'Determine if Uzra role needs realignment or hire' },
+                    { when: '9/23/26', what: 'Natasha has been onboarded; still finalizing onboarding for Andrew and Pete.', who: 'Natasha Ness', nextStep: 'Pending Lead Strategist hire.' }
                 ]
             },
             'tier-2': {
-                name: 'Tier 2: Enterprise Architects', id: 'T2', adobeContact: 'Jenn Reardon', rolesToFill: 4,
+                name: 'Tier 2: Enterprise Architects', id: 'T2', adobeContact: 'Jenn Reardon', rolesToFill: 5,
                 roleBreakdown: [
-                    { role: 'Senior Enterprise Architect', filled: 3, total: 4 }
+                    { role: 'Senior Enterprise Architect', filled: 5, total: 5 }
                 ],
                 summary: 'Tier 2 provides senior technical architecture and advisory for Adobe Integrated Services.',
                 overviewDescription: 'Tier 2 supplies the deep technical architecture and advisory expertise that underpins every delivery pod in the program. This team leads discovery and solution design across the full Adobe Experience Cloud stack, translating complex client requirements into integrated, governed architectures. Beyond hands-on design work, Tier 2 architects also mentor delivery teams and build client-side technical maturity so solutions remain sustainable long after go-live.',
@@ -1610,10 +1618,7 @@
                 ],
                 resources: [
                     { role: 'Senior Enterprise Architect', desc: 'Technical strategy & solution design', people: [
-                        { name: 'Gowtami Mohanty', status: 'filled' }, { name: 'Aditya Vedula', status: 'filled' }, { name: 'Arthur Golk', status: 'filled' }, { name: 'Natasha Ness', status: 'filled' }
-                    ], openCount: 0 },
-                    { role: 'Senior Enterprise Architect', desc: 'Technical strategy & solution design', people: [
-                        { name: 'Melissa Rae Brancato', status: 'adobevetting' }, { name: 'Vishal Wani', status: 'adobevetting' }, { name: 'Alvin B. Collins', status: 'adobevetting' }
+                        { name: 'Gowtami Mohanty', status: 'filled' }, { name: 'Aditya Vedula', status: 'filled' }, { name: 'Arthur Golk', status: 'filled' }, { name: 'Natasha Ness', status: 'filled' }, { name: 'Melissa Rae Brancato', status: 'filled' }
                     ], openCount: 0 }
                 ],
                 activations: {
@@ -1634,16 +1639,17 @@
                 ],
                 discussions: [
                     { when: '9/11/26', what: 'Profile review with Ken (Adobe)', who: 'Natasha Ness', nextStep: 'Ken reviews candidate profiles for final EA hire' },
-                    { when: '9/14/26 (week of)', what: 'Vetting calls for Adi/Art', who: 'Natasha Ness', nextStep: 'Conduct technical vetting calls with candidates' }
+                    { when: '9/14/26 (week of)', what: 'Vetting calls for Adi/Art', who: 'Natasha Ness', nextStep: 'Conduct technical vetting calls with candidates' },
+                    { when: '9/23/26', what: 'All EAs in seat, pending final onboarding for Melissa and Gowtami. Aditya has been assigned an account; Natasha will meet with the client to confirm interest. Arthur is still pending an account assignment.', who: 'Natasha Ness', nextStep: 'All EAs continuing through EA onboarding.' }
                 ]
             },
             'tier-3-1': {
                 name: 'Tier 3.1: Integrated Services', id: '3.1', adobeContact: 'Jenn Reardon', rolesToFill: 9,
                 roleBreakdown: [
-                    { role: 'Program Manager', filled: 0, total: 1 },
-                    { role: 'Business Analyst', filled: 0, total: 2 },
-                    { role: 'Lead Developer', filled: 0, total: 4 },
-                    { role: 'Lead Architect', filled: 0, total: 2 }
+                    { role: 'Program Manager', filled: 1, total: 1 },
+                    { role: 'Business Analyst', filled: 1, total: 2 },
+                    { role: 'Lead Developer', filled: 4, total: 4 },
+                    { role: 'Lead Architect', filled: 1, total: 2 }
                 ],
                 summary: 'Tier 3.1 delivers ongoing technical implementation and delivery across integrated services engagements.',
                 overviewDescription: 'Tier 3.1 is the core delivery engine for Integrated Services engagements, carrying clients from strategy into live production through phased, predictable roadmaps. This pod balances multiple concurrent workstreams — program management, business analysis, architecture, and development — while maintaining clear scope boundaries so client expectations and delivery timelines stay aligned. A key focus is building lasting client-side platform competency, ensuring the value of each engagement extends well beyond the initial delivery window.',
@@ -1657,19 +1663,16 @@
                 ],
                 resources: [
                     { role: 'Program Manager', desc: 'Delivery planning & scope management', people: [
-                        { name: 'Morgan Dudzinski', status: 'adobevetting' },
-                        { name: 'Amy Hill', status: 'adobevetting' },
-                        { name: 'Kyle King', status: 'adobevetting' }
+                        { name: 'Morgan Dudzinski', status: 'filled' }
                     ], openCount: 0 },
-                    { role: 'Business Analyst', desc: 'Requirements & documentation', people: [{ name: 'Aishwary Porwal', status: 'adobevetting', location: 'Offshore' }], openCount: 1, openStatus: 'interviewing' },
+                    { role: 'Business Analyst', desc: 'Requirements & documentation', people: [{ name: 'Aishwary Porwal', status: 'filled', location: 'Offshore' }], openCount: 1, openStatus: 'interviewing' },
                     { role: 'Lead Developer', desc: 'Technical implementation', people: [
-                        { name: 'Anoop Chenthamara', status: 'adobevetting', location: 'Offshore' }, { name: 'Abinash Nayak', status: 'adobevetting', location: 'Offshore' },
-                        { name: 'Borislav Mavrov', status: 'adobevetting' }, { name: 'Sean Dawson', status: 'adobevetting' }
-                    ], openCount: 2, openStatus: 'interviewing' },
+                        { name: 'Anoop Chenthamara', status: 'filled', location: 'Offshore' }, { name: 'Abinash Nayak', status: 'filled', location: 'Offshore' },
+                        { name: 'Sai Chaitanya Sama', status: 'filled' }, { name: 'Disha Patel', status: 'filled', location: 'Onshore' }
+                    ], openCount: 0 },
                     { role: 'Lead Architect', desc: 'Architectural governance', people: [
-                        { name: 'Disha Patel', status: 'adobevetting', location: 'Onshore' },
-                        { name: 'Jonathan Carstensen', status: 'adobevetting' }, { name: 'Kushal Kumar Vanamamaly', status: 'adobevetting' }
-                    ], openCount: 0 }
+                        { name: 'Jonathan Carstensen', status: 'filled' }
+                    ], openCount: 1, openStatus: 'defining' }
                 ],
                 activations: {
                     planning: [
@@ -1696,13 +1699,14 @@
                     'Engagement leads to extension offer or next-phase opportunity within 6 months'
                 ],
                 discussions: [
-                    { when: '9/11/26', what: 'Resource allocation & staffing mix discussion', who: 'Natasha Ness & Jen R.', nextStep: 'More onshore staffing (PM, LA); less offshore (Dev, 1 BA). Profiles shared for review.' }
+                    { when: '9/11/26', what: 'Resource allocation & staffing mix discussion', who: 'Natasha Ness & Jen R.', nextStep: 'More onshore staffing (PM, LA); less offshore (Dev, 1 BA). Profiles shared for review.' },
+                    { when: '9/23/26', what: 'Close to completed staffing; finalizing Vndly details for the bulk of staff.', who: 'Natasha Ness', nextStep: 'Working on final offers and internal Merkle updates for 2 Lead Architects and 1 Business Analyst.' }
                 ]
             },
             'tier-3-2a': {
                 name: 'Tier 3.2a: ACS Pre-Sales', id: '3.2a', adobeContact: 'Kathy Martin', rolesToFill: 4,
                 roleBreakdown: [
-                    { role: 'Solution Architect', filled: 0, total: 4 }
+                    { role: 'Solution Architect', filled: 1, total: 4 }
                 ],
                 summary: 'Tier 3.2a delivers specialized Adobe Consulting Services pre-sales engagements across the full Adobe Enterprise Technology portfolio, with a focus on solutions spanning Content Supply Chain and Data & Journeys.',
                 overviewDescription: 'Tier 3.2a is Adobe Consulting Services\' dedicated pre-sales pod, engaging prospective clients with deep solution architecture across the full Adobe Enterprise Technology portfolio, with particular focus on Content Supply Chain and Data & Journeys solutions. This team designs technical solutions that demonstrate integration depth and platform value, then builds the business case that turns strategic interest into a committed, longer-term engagement. Because this work happens ahead of contract signature, the pod operates with tight turnaround expectations and close coordination with Adobe\'s own pre-sales organization. These roles may require travel, must be based in the US or Canada, and work side-by-side with sellers throughout the sales cycle. Candidates need a strong functional understanding across the full Adobe solution portfolio, with the ability to tie client objectives and pain points to tangible outcomes that Adobe Consulting Services (ACS) can support.',
@@ -1718,11 +1722,8 @@
                 ],
                 resources: [
                     { role: 'Solution Architect', desc: 'Solution design across Adobe Enterprise Technologies', people: [
-                        { name: 'Raymond Blaisdell', status: 'adobevetting' },
-                        { name: 'Jason Ciapa', status: 'adobevetting' },
-                        { name: 'Nicolle Naylor', status: 'adobevetting' },
-                        { name: 'Shruti Kulkarni', status: 'adobevetting' }
-                    ], openCount: 0 }
+                        { name: 'Raymond Blaisdell', status: 'filled' }
+                    ], openCount: 3, openStatus: 'defining' }
                 ],
                 activations: {
                     planning: [
@@ -1749,7 +1750,8 @@
                     'Client satisfaction with technical approach exceeds 4.0/5.0'
                 ],
                 discussions: [
-                    { when: '9/9/26', what: 'Role expectations shift; vetting internal candidates', who: 'Adobe', nextStep: 'Actively interviewing 4 Solution Architect candidates; sharing profiles to Kathy as ready' }
+                    { when: '9/9/26', what: 'Role expectations shift; vetting internal candidates', who: 'Adobe', nextStep: 'Actively interviewing 4 Solution Architect candidates; sharing profiles to Kathy as ready' },
+                    { when: '9/23/26', what: 'Raymond is hired and ready to start 10/5. The other three Solution Architect roles remain in the interview process — previously shared resources were unable to join the pod due to conflicting engagements.', who: 'Natasha Ness', nextStep: 'Interviews are active.' }
                 ]
             },
             'tier-3-2b': {
@@ -1796,15 +1798,16 @@
                     'Japan-based team equipped with skills and documentation'
                 ],
                 discussions: [
-                    { when: '9/11/26 (week of)', what: 'Alignment on staffing mix with Adobe POC', who: 'Natasha Ness & Junpei', nextStep: 'Confirm staffing alignment with Adobe POC contact' }
+                    { when: '9/11/26 (week of)', what: 'Alignment on staffing mix with Adobe POC', who: 'Natasha Ness & Junpei', nextStep: 'Confirm staffing alignment with Adobe POC contact' },
+                    { when: '9/23/26', what: 'Working to get contact alignment for Japan at Adobe.', who: 'Natasha Ness', nextStep: 'Begin onboarding in October.' }
                 ]
             },
             'tier-3-3': {
                 name: 'Tier 3.3: Analytics Modernization', id: '3.3', adobeContact: 'Eric O., John L.', rolesToFill: 5,
                 roleBreakdown: [
-                    { role: 'Tech Architect', filled: 2, total: 2 },
+                    { role: 'Tech Architect', filled: 1, total: 2 },
                     { role: 'Business Analyst', filled: 2, total: 2 },
-                    { role: 'Data Architect', filled: 1, total: 1 }
+                    { role: 'Data Architect', filled: 0, total: 1 }
                 ],
                 summary: 'Tier 3.3 delivers Customer Journey Analytics (CJA) implementations and analytics platform modernization.',
                 overviewDescription: 'Tier 3.3 modernizes client analytics platforms around Adobe Customer Journey Analytics (CJA), designing the data architecture and pipelines that make cross-channel measurement possible. This pod builds robust, governed data pipelines and works closely with client analytics teams to transfer the skills needed to operate CJA independently. Success here is measured not just by clean implementation, but by client teams\' ability to self-serve insights and expand their analytics practice over time.',
@@ -1817,9 +1820,9 @@
                     'Establish governance and metrics frameworks'
                 ],
                 resources: [
-                    { role: 'Tech Architect', desc: 'Analytics architecture & data design', people: [{ name: 'Sanket Tiwari', status: 'filled' }, { name: 'Chad Sitler', status: 'filled' }], openCount: 0 },
+                    { role: 'Tech Architect', desc: 'Analytics architecture & data design', people: [{ name: 'Chad Sitler', status: 'filled' }], openCount: 1, openStatus: 'defining' },
                     { role: 'Business Analyst', desc: 'Analytics planning & requirements', people: [{ name: 'Vishal More', status: 'filled' }, { name: 'Ale Seidman', status: 'filled' }], openCount: 0 },
-                    { role: 'Data Architect', desc: 'ETL design & data governance', people: [{ name: 'Prerana Lanjile', status: 'filled' }], openCount: 0 }
+                    { role: 'Data Architect', desc: 'ETL design & data governance', people: [], openCount: 1, openStatus: 'defining' }
                 ],
                 activations: {
                     planning: [
@@ -1848,11 +1851,11 @@
                 ]
             },
             'tier-3-4a': {
-                name: 'Tier 3.4a: Drago', id: '3.4a', adobeContact: 'Ben Durst, Reggie Walke', rolesToFill: 6,
+                name: 'Tier 3.4a: Drago', id: '3.4a', adobeContact: 'Ben Durst, Reggie Walke', rolesToFill: 7,
                 roleBreakdown: [
                     { role: 'Product Manager', filled: 1, total: 1 },
-                    { role: 'Design Engineer', filled: 0, total: 1 },
-                    { role: 'Lead Developer', filled: 1, total: 3 },
+                    { role: 'Lead Developer', filled: 3, total: 3 },
+                    { role: 'Design Engineer', filled: 2, total: 2 },
                     { role: 'QA', filled: 1, total: 1 }
                 ],
                 summary: 'Tier 3.4a (Drago) focuses on AEM EDS site migrations, delivering next-generation agentic web experiences using AEM and Edge Delivery Services.',
@@ -1867,14 +1870,15 @@
                 ],
                 resources: [
                     { role: 'Product Manager', desc: 'Delivery planning & execution', people: [{ name: 'Naseer Dalwai', status: 'filled' }], openCount: 0 },
-                    { role: 'Design Engineer', desc: 'UI/UX to component translation (50% allocation — under discussion with Cam)', people: [], openCount: 1, openStatus: 'defining' },
                     { role: 'Lead Developer', desc: 'Web development & Edge Delivery Services', people: [
                         { name: 'William Gajewski', status: 'filled' },
-                        { name: 'Bhupesh Palav', status: 'adobevetting' },
-                        { name: 'Rohan Vernekar', status: 'adobevetting' },
-                        { name: 'Gokulraj Rajarathinam', status: 'adobevetting' },
-                        { name: 'Disha Patel', status: 'adobevetting' }
-                    ], openCount: 2, openStatus: 'defining' },
+                        { name: 'Bhupesh Palav', status: 'filled' },
+                        { name: 'Gokulraj Rajarathinam', status: 'filled' }
+                    ], openCount: 0 },
+                    { role: 'Design Engineer', desc: 'UI/UX to component translation', people: [
+                        { name: 'Hannah', status: 'filled' },
+                        { name: 'Izzy', status: 'filled' }
+                    ], openCount: 0 },
                     { role: 'QA', desc: 'Web experience testing & validation', people: [{ name: 'Grishma Shah', status: 'filled' }], openCount: 0 }
                 ],
                 activations: {
@@ -1900,7 +1904,8 @@
                 ],
                 discussions: [
                     { when: '9/11/26', what: 'Finalize requirements & Amendment needs', who: 'Natasha Ness', nextStep: 'Complete staffing and Amendment scope definition' },
-                    { when: '9/14/26', what: 'Finalize 3.4 pod requirements with Ben Durst', who: 'Natasha Ness & Ben Durst (Adobe)', nextStep: 'Model variations; finalize JDs and source headcount for gaps' }
+                    { when: '9/14/26', what: 'Finalize 3.4 pod requirements with Ben Durst', who: 'Natasha Ness & Ben Durst (Adobe)', nextStep: 'Model variations; finalize JDs and source headcount for gaps' },
+                    { when: '9/23/26', what: 'Aligned on staffing mix; pod is fully staffed. Kicked off Highmark with Adobe to begin work.', who: 'Natasha Ness', nextStep: 'Pending Vndly access — Natasha to send to Alberto this week. Coordinating an in-person ways-of-working session with Anna P.' }
                 ]
             },
             'tier-3-4b': {
@@ -1928,7 +1933,7 @@
                     { role: 'Innovation Lab Lead', desc: 'Lab strategy & workshop facilitation', people: [], openCount: 1, openStatus: 'defining' },
                     { role: 'Lead Architect', desc: 'Technical architecture & solution design', people: [{ name: 'Prabudoss Haridoss', status: 'filled' }], openCount: 0 },
                     { role: 'Business Analyst', desc: 'Requirements & feature prioritization', people: [{ name: 'Ethan Dilhoff', status: 'filled' }], openCount: 0 },
-                    { role: 'Lead Developer', desc: 'Prototype development & experimentation', people: [{ name: 'Matt McKinley', status: 'adobevetting' }], openCount: 2, openStatus: 'defining' },
+                    { role: 'Lead Developer', desc: 'Prototype development & experimentation', people: [], openCount: 2, openStatus: 'defining' },
                     { role: 'QA', desc: 'AI & agentic systems testing', people: [{ name: 'Pooja Shinde', status: 'filled' }], openCount: 0 }
                 ],
                 activations: {
@@ -1956,7 +1961,8 @@
                 ],
                 discussions: [
                     { when: '9/11/26', what: 'Finalize requirements & Amendment needs', who: 'Natasha Ness', nextStep: 'Complete staffing and Amendment scope definition' },
-                    { when: '9/14/26', what: 'Finalize 3.4 pod requirements with Ben Durst', who: 'Natasha Ness & Ben Durst (Adobe)', nextStep: 'Model variations; finalize JDs and source headcount for gaps' }
+                    { when: '9/14/26', what: 'Finalize 3.4 pod requirements with Ben Durst', who: 'Natasha Ness & Ben Durst (Adobe)', nextStep: 'Model variations; finalize JDs and source headcount for gaps' },
+                    { when: '9/23/26', what: 'Aligned on staffing mix. Pod is partially filled; still missing key developers.', who: 'Natasha Ness', nextStep: 'Pending Vndly access — Natasha to send to Alberto this week. Coordinating an in-person ways-of-working session with Anna P.' }
                 ]
             },
             'tier-3-4c': {
@@ -1976,9 +1982,7 @@
                 ],
                 resources: [
                     { role: 'Lead Strategist', desc: 'Shared with Tier 1 (Uzra Edery) — strategic direction & executive alignment', people: [{ name: 'Uzra Edery', status: 'filled' }], openCount: 0 },
-                    { role: 'Lead Developer', desc: 'Agentic workflow development', people: [
-                        { name: 'Cameron Tan', status: 'adobevetting' }
-                    ], openCount: 2, openStatus: 'defining' }
+                    { role: 'Lead Developer', desc: 'Agentic workflow development', people: [], openCount: 2, openStatus: 'defining' }
                 ],
                 activations: {
                     planning: [
@@ -2002,7 +2006,8 @@
                     'Engagement leads to expanded services contract'
                 ],
                 discussions: [
-                    { when: '9/11-9/14/26', what: 'Finalize requirements & Budget allocation strategy', who: 'Natasha Ness', nextStep: 'Determine if resources come from 3.3 or elsewhere; finalize JDs' }
+                    { when: '9/11-9/14/26', what: 'Finalize requirements & Budget allocation strategy', who: 'Natasha Ness', nextStep: 'Determine if resources come from 3.3 or elsewhere; finalize JDs' },
+                    { when: '9/23/26', what: 'Gained client list; working to coordinate additional GTM discussions. Currently staffing, but only 1 person staffed at this time.', who: 'Natasha Ness', nextStep: 'Continue active staffing and GTM coordination.' }
                 ]
             }
         };
@@ -2042,7 +2047,11 @@
                 if (key === 'summary') {
                     return `<li><button class="pod-nav-btn secondary-nav ${key === activePod ? 'active' : ''}" data-pod="${key}">
                         <svg class="icon icon-sm"><use href="#icon-home"/></svg><span>${pod.name || 'Summary'}</span>
-                    </button></li><li><hr class="sidebar-nav-divider"></li>`;
+                    </button></li>
+                    <li><button class="pod-nav-btn secondary-nav ${activePod === 'about-program' ? 'active' : ''}" data-pod="about-program">
+                        <svg class="icon icon-sm"><use href="#icon-clipboard"/></svg><span>About this Program</span>
+                    </button></li>
+                    <li><hr class="sidebar-nav-divider"></li>`;
                 }
                 const prefix = (key === 'tier-3-4a')
                     ? `<li><hr class="sidebar-nav-divider"></li><li><div class="sidebar-section-label">Tier 3.4 Customer: Fast Track</div></li>`
@@ -2088,6 +2097,63 @@
                 </svg>
             `;
         }
+
+        function renderAboutProgramPage() {
+            const podList = Object.entries(pods).filter(([key]) => key !== 'summary');
+            const totalResources = podList.reduce((sum, [key, pod]) => sum + (pod.rolesToFill || 0), 0);
+
+            const totalContractValue = 80000000;
+            const part1Value = totalContractValue * (2 / 3);
+            const part2Value = totalContractValue * (1 / 3);
+            const fmt = (n) => '$' + (n / 1000000).toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'M';
+
+            const podRowsHtml = podList.map(([key, pod]) => `
+                <tr>
+                    <td>${pod.name}</td>
+                    <td>${pod.rolesToFill || 0}</td>
+                </tr>
+            `).join('');
+
+            return `
+                <div class="card">
+                    <h3>Program Structure</h3>
+                    <p class="overview-description" style="margin-bottom: 24px;">This engagement is governed by a single Statement of Work (SOW), split into two parts that run in parallel across the life of the contract.</p>
+                    <div class="objectives-columns">
+                        <div>
+                            <div class="objectives-col-label">Part 1</div>
+                            <div style="font-size: 17px; font-weight: 700; color: #0328D1; margin-bottom: 8px;">We Deliver Work for Adobe</div>
+                            <div style="font-size: 14px; color: #33333F; line-height: 1.6;">Merkle acts as Adobe's implementation and delivery partner, executing Engagements and Value Realization work on behalf of Adobe's End Customers across the Adobe Experience Cloud portfolio.</div>
+                        </div>
+                        <div>
+                            <div class="objectives-col-label">Part 2</div>
+                            <div style="font-size: 17px; font-weight: 700; color: #6311CB; margin-bottom: 8px;">Adobe Delivers Work for Us</div>
+                            <div style="font-size: 14px; color: #33333F; line-height: 1.6;">Adobe provides pre-sales and enablement support back to Merkle — including "Prove Before You Buy" style engagements — helping position and validate solutions ahead of a committed engagement.</div>
+                        </div>
+                    </div>
+                    <p class="overview-description" style="margin: 28px 0 20px; padding-top: 24px; border-top: 1px solid #E4E4E4;">The total contract value is $80M, split over two years. Two-thirds of the work and budget falls into Part 1, with the remaining third in Part 2.</p>
+                    <div class="status-grid status-grid-3">
+                        <div class="status-box overall"><div class="status-value">${fmt(totalContractValue)}</div><div class="status-desc">Total Contract Value (2 Years)</div></div>
+                        <div class="status-box filled"><div class="status-value">${fmt(part1Value)}</div><div class="status-desc">Part 1 — We Deliver for Adobe (2/3)</div></div>
+                        <div class="status-box hiring"><div class="status-value">${fmt(part2Value)}</div><div class="status-desc">Part 2 — Adobe Delivers for Us (1/3)</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Pod Summary</h3>
+                    <p class="overview-description" style="margin-bottom: 20px;">A quick look at every pod across the program and how many resources each is staffed to.</p>
+                    <div class="table-wrap">
+                        <table class="discussions-table">
+                            <thead><tr><th>Pod</th><th>Number of Resources</th></tr></thead>
+                            <tbody>
+                                ${podRowsHtml}
+                                <tr style="font-weight: 700;"><td>Total</td><td>${totalResources}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
 
         function renderSummaryPage() {
             const podList = Object.entries(pods).filter(([key]) => key !== 'summary');
@@ -2143,13 +2209,6 @@
                                 `;
                             }).join('')}
                         </div>
-                    </div>
-                    <div class="metric-card metric-card-centered">
-                        <div class="chart-card-header">
-                            <div class="chart-card-title">Profiles Ready to Review</div>
-                        </div>
-                        <div class="big-stat-number">${totalProfilesToReview}</div>
-                        <div class="big-stat-label">Total number of profiles ready to review</div>
                     </div>
                     <div class="metric-card">
                         <div class="chart-card-header">
@@ -2299,14 +2358,11 @@
                     </div>
                 `;
             }
-            const profile = profiles[item.name];
-            const avatarInner = (profile && profile.image)
-                ? `<img src="${profile.image}" alt="${item.name}">`
-                : getInitials(item.name);
+            const avatarInner = getInitials(item.name);
             return `
                 <div class="person-tile" onclick="openProfileModal('${item.name.replace(/'/g, "\\'")}', '${item.role.replace(/'/g, "\\'")}', '${item.status}', '${podKey}')">
                     <div class="person-avatar">${avatarInner}</div>
-                    <div class="person-tile-name">${item.name}</div>
+                    <div class="person-tile-name">${formatShortName(item.name)}</div>
                     <div class="person-tile-role">${item.role}</div>
                     <span class="person-tile-status ${item.status}"><span class="dot ${item.status}"></span>${statusWord(item.status)}</span>
                 </div>
@@ -2333,7 +2389,7 @@
                         ${rows.map(item => {
                             const nameCell = item.isOpen
                                 ? `<span class="inventory-name-open">${item.count} Open</span>`
-                                : `<span class="inventory-name-link" onclick="openProfileModal('${item.name.replace(/'/g, "\\'")}', '${item.role.replace(/'/g, "\\'")}', '${item.status}', '${podKey}')">${item.name}</span>`;
+                                : `<span class="inventory-name-link" onclick="openProfileModal('${item.name.replace(/'/g, "\\'")}', '${item.role.replace(/'/g, "\\'")}', '${item.status}', '${podKey}')">${formatShortName(item.name)}</span>`;
                             return `
                                 <tr>
                                     <td>${nameCell}</td>
@@ -2631,11 +2687,8 @@
                     <thead><tr><th>Name</th><th>Pod</th><th>Region</th><th>Role</th><th>Status</th><th>Expertise</th></tr></thead>
                     <tbody>
                         ${filtered.map(row => {
-                            const profile = row.named ? profiles[row.name] : null;
                             const thumb = row.named
-                                ? (profile && profile.image
-                                    ? `<div class="inventory-thumb"><img src="${profile.image}" alt="${row.name}"></div>`
-                                    : `<div class="inventory-thumb">${getInitials(row.name)}</div>`)
+                                ? `<div class="inventory-thumb">${getInitials(row.name)}</div>`
                                 : `<div class="inventory-thumb open-role"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>`;
                             return `
                             <tr>
@@ -2643,7 +2696,7 @@
                                     <div class="inventory-name-cell">
                                         ${thumb}
                                         ${row.named
-                                            ? `<span class="inventory-name-link" onclick="openProfileModal('${row.name.replace(/'/g, "\\'")}', '${row.role.replace(/'/g, "\\'")}', '${row.status}', '${row.podKey}')">${row.name}</span>`
+                                            ? `<span class="inventory-name-link" onclick="openProfileModal('${row.name.replace(/'/g, "\\'")}', '${row.role.replace(/'/g, "\\'")}', '${row.status}', '${row.podKey}')">${formatShortName(row.name)}</span>`
                                             : `<span class="inventory-name-open">${row.openCount} Open Role${row.openCount > 1 ? 's' : ''}</span>`}
                                     </div>
                                 </td>
@@ -2759,6 +2812,14 @@
                 adobeCard.style.display = 'none';
                 document.getElementById('pageContent').innerHTML = renderResourceInventoryPage();
                 initInventoryInteractions();
+                return;
+            }
+
+            if (activePod === 'about-program') {
+                document.getElementById('pageTitle').textContent = 'About this Program';
+                document.getElementById('headerDesc').textContent = 'A high-level look at how this engagement is structured and staffed.';
+                adobeCard.style.display = 'none';
+                document.getElementById('pageContent').innerHTML = renderAboutProgramPage();
                 return;
             }
 
