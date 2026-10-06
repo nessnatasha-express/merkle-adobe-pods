@@ -217,6 +217,8 @@
         @media (max-width: 900px) { .status-grid { grid-template-columns: repeat(2, 1fr); } }
         .status-grid-2 { grid-template-columns: repeat(2, 1fr); margin-bottom: 20px; }
         @media (max-width: 900px) { .status-grid-2 { grid-template-columns: 1fr; } }
+        .status-grid-4 { grid-template-columns: repeat(4, 1fr); }
+        @media (max-width: 900px) { .status-grid-4 { grid-template-columns: repeat(2, 1fr); } }
 
         .role-breakdown-card { }
         .role-breakdown-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 600; color: #505050; margin-bottom: 16px; }
@@ -2139,20 +2141,21 @@
                     <div class="objectives-columns">
                         <div>
                             <div class="objectives-col-label">Part 1</div>
-                            <div style="font-size: 17px; font-weight: 700; color: #0328D1; margin-bottom: 8px;">We Deliver Work for Adobe</div>
-                            <div style="font-size: 14px; color: #33333F; line-height: 1.6;">Merkle acts as Adobe's implementation and delivery partner, executing Engagements and Value Realization work on behalf of Adobe's End Customers across the Adobe Experience Cloud portfolio.</div>
+                            <div style="font-size: 17px; font-weight: 700; color: #0328D1; margin-bottom: 8px;">Merkle Delivers Work for Adobe</div>
+                            <div style="font-size: 14px; color: #33333F; line-height: 1.6;">Merkle implements and delivers AEC solutions for Adobe's End Customers. Committed to Delivery $20M in year one, and $35M in year two, totaling a $55M investment of our staff to support a wide array of services in augmenting Adobe Consulting and Adobe Pre-Sales Motions.</div>
                         </div>
                         <div>
                             <div class="objectives-col-label">Part 2</div>
                             <div style="font-size: 17px; font-weight: 700; color: #6311CB; margin-bottom: 8px;">Adobe Delivers Work for Us</div>
-                            <div style="font-size: 14px; color: #33333F; line-height: 1.6;">Adobe provides pre-sales and enablement support back to Merkle — including "Prove Before You Buy" style engagements — helping position and validate solutions ahead of a committed engagement.</div>
+                            <div style="font-size: 14px; color: #33333F; line-height: 1.6;">Adobe provides delivery support back to Merkle and Merkle's clients through what is called Integrated Services (IS) activations.</div>
                         </div>
                     </div>
                     <p class="overview-description" style="margin: 28px 0 20px; padding-top: 24px; border-top: 1px solid #E4E4E4;">The total contract value is $80M, split over two years. Two-thirds of the work and budget falls into Part 1, with the remaining third in Part 2.</p>
-                    <div class="status-grid status-grid-3">
+                    <div class="status-grid status-grid-4">
                         <div class="status-box overall"><div class="status-value">${fmt(totalContractValue)}</div><div class="status-desc">Total Contract Value (2 Years)</div></div>
-                        <div class="status-box filled"><div class="status-value">${fmt(part1Value)}</div><div class="status-desc">Part 1 — We Deliver for Adobe (2/3)</div></div>
+                        <div class="status-box filled"><div class="status-value">${fmt(part1Value)}</div><div class="status-desc">Part 1 — Merkle Delivers for Adobe (2/3)</div></div>
                         <div class="status-box hiring"><div class="status-value">${fmt(part2Value)}</div><div class="status-desc">Part 2 — Adobe Delivers for Us (1/3)</div></div>
+                        <div class="status-box overall"><div class="status-value">${totalResources}</div><div class="status-desc">Total Number of Resources</div></div>
                     </div>
                 </div>
 
@@ -2255,20 +2258,15 @@
 
             podList.forEach(([key, pod]) => {
                 const c = countByStatus(pod);
-                const status = getPodStatus(key);
-                const color = getPodStatusColor(key);
                 html += `
                     <div class="pod-card" onclick="navigateTo('${key}')">
-                        <div class="pod-card-status-row">
-                            <span class="status-dot ${color}"></span><span class="status-text ${color}">${status}</span>
-                        </div>
                         <div class="pod-card-headline">${pod.name}</div>
                         <div class="pod-card-desc">${pod.summary}</div>
                         <div class="pod-card-pills">
                             ${c.filled > 0 ? `<span class="pod-pill">${c.filled} Filled</span>` : ''}
                             ${c.adobevetting > 0 ? `<span class="pod-pill">${c.adobevetting} Adobe Vetting</span>` : ''}
                             ${c.interviewing > 0 ? `<span class="pod-pill">${c.interviewing} Interviewing</span>` : ''}
-                            ${c.defining > 0 ? `<span class="pod-pill">${c.defining} Defining</span>` : ''}
+                            ${c.defining > 0 ? `<span class="pod-pill">${c.defining} Open</span>` : ''}
                             ${c.onhold > 0 ? `<span class="pod-pill">${c.onhold} On-Hold</span>` : ''}
                         </div>
                         <hr class="pod-card-divider">
