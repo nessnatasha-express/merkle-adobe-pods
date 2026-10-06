@@ -706,6 +706,16 @@
                 industries: 'Healthcare, Fintech, Financial Services',
                 image: null
             },
+            'Oba Brooks': {
+                title: 'Senior Business Solutions Consultant',
+                currentTitle: 'Senior Business Solutions Consultant | Onshore',
+                summary: '20+ years of experience across project/program management, finance, and operations, with hands-on work supporting Adobe Commerce, AEM, and AEP/CJA implementations. Currently a Senior Business Solutions Consultant at Blue Acorn iCi, leading stakeholder discovery, eliciting requirements, and translating business needs into BRDs, use cases, and user stories across Commerce, AEM, and AEP/CJA workstreams. Prior experience spans Wells Fargo, Goldman Sachs, and Deloitte in operations, risk, and process improvement roles.',
+                tags: ['Business Analysis', 'Requirements Elicitation', 'Stakeholder Discovery', 'Adobe Experience Platform (AEP)', 'Customer Journey Analytics (CJA)', 'Adobe Experience Manager (AEM)', 'Adobe Commerce', 'KPI Definition & Traceability', 'Agile/Scrum', 'Risk Management'],
+                certs: ['Adobe Certified Professional – Customer Journey Analytics Business Practitioner (2025)', 'Adobe Certified Professional – AEM Sites Business Practitioner Expert (In Progress)'],
+                location: 'Onshore',
+                industries: 'Financial Services, Banking, Retail/Commerce',
+                image: null
+            },
             'Grishma Shah': {
                 title: 'QA Lead',
                 currentTitle: 'Lead Analyst — QA Lead | Offshore',
@@ -739,7 +749,7 @@
             'Vishal More': {
                 title: 'Lead Analyst',
                 currentTitle: 'Lead Analyst | Offshore',
-                summary: 'Lead Analyst at Dentsu Global Services (Merkle) with 5+ years of experience in customer journey analytics and marketing campaign management. Adobe Certified Professional in Customer Journey Analytics, supporting business analysis work on the Tier 3.3 Analytics Modernization pod.',
+                summary: 'Lead Analyst at Dentsu Global Services (Merkle) with 5+ years of experience in customer journey analytics and marketing campaign management. Adobe Certified Professional in Customer Journey Analytics, supporting business analysis work on the Tier 3.3 Product Modernization pod.',
                 tags: ['Customer Journey Analytics (CJA)', 'Marketing Campaign Management', 'Client Communication'],
                 certs: ['Adobe Certified Professional - Customer Journey Analytics Business Practitioner'],
                 location: 'Offshore',
@@ -1451,7 +1461,7 @@
         }
 
         function statusLabel(status) {
-            const map = { filled: 'Filled/Vetted', adobevetting: 'Adobe Vetting', interviewing: 'Interviewing', defining: 'Defining', onhold: 'On-Hold' };
+            const map = { filled: 'Filled', adobevetting: 'Adobe Vetting', interviewing: 'Interviewing', defining: 'Open', onhold: 'On-Hold' };
             return map[status] || status;
         }
 
@@ -1598,13 +1608,14 @@
                 ],
                 discussions: [
                     { when: '9/10/26', what: 'Clarify Lead Strategist focus area', who: 'Natasha Ness', nextStep: 'Determine if Uzra role needs realignment or hire' },
-                    { when: '9/23/26', what: 'Natasha has been onboarded; still finalizing onboarding for Andrew and Pete.', who: 'Natasha Ness', nextStep: 'Pending Lead Strategist hire.' }
+                    { when: '9/23/26', what: 'Natasha has been onboarded; still finalizing onboarding for Andrew and Pete.', who: 'Natasha Ness', nextStep: 'Pending Lead Strategist hire.' },
+                    { when: '10/5/26', what: 'Finalizing interviews for Lead Strategist candidate.', who: 'Natasha Ness', nextStep: 'Awaiting final decision on Lead Strategist hire.' }
                 ]
             },
             'tier-2': {
-                name: 'Tier 2: Enterprise Architects', id: 'T2', adobeContact: 'Jenn Reardon', rolesToFill: 5,
+                name: 'Tier 2: Enterprise Architects', id: 'T2', adobeContact: 'Jenn Reardon', rolesToFill: 4,
                 roleBreakdown: [
-                    { role: 'Senior Enterprise Architect', filled: 5, total: 5 }
+                    { role: 'Senior Enterprise Architect', filled: 4, total: 4 }
                 ],
                 summary: 'Tier 2 provides senior technical architecture and advisory for Adobe Integrated Services.',
                 overviewDescription: 'Tier 2 supplies the deep technical architecture and advisory expertise that underpins every delivery pod in the program. This team leads discovery and solution design across the full Adobe Experience Cloud stack, translating complex client requirements into integrated, governed architectures. Beyond hands-on design work, Tier 2 architects also mentor delivery teams and build client-side technical maturity so solutions remain sustainable long after go-live.',
@@ -1618,7 +1629,7 @@
                 ],
                 resources: [
                     { role: 'Senior Enterprise Architect', desc: 'Technical strategy & solution design', people: [
-                        { name: 'Gowtami Mohanty', status: 'filled' }, { name: 'Aditya Vedula', status: 'filled' }, { name: 'Arthur Golk', status: 'filled' }, { name: 'Natasha Ness', status: 'filled' }, { name: 'Melissa Rae Brancato', status: 'filled' }
+                        { name: 'Gowtami Mohanty', status: 'filled' }, { name: 'Aditya Vedula', status: 'filled' }, { name: 'Arthur Golk', status: 'filled' }, { name: 'Melissa Rae Brancato', status: 'filled' }
                     ], openCount: 0 }
                 ],
                 activations: {
@@ -1640,16 +1651,17 @@
                 discussions: [
                     { when: '9/11/26', what: 'Profile review with Ken (Adobe)', who: 'Natasha Ness', nextStep: 'Ken reviews candidate profiles for final EA hire' },
                     { when: '9/14/26 (week of)', what: 'Vetting calls for Adi/Art', who: 'Natasha Ness', nextStep: 'Conduct technical vetting calls with candidates' },
-                    { when: '9/23/26', what: 'All EAs in seat, pending final onboarding for Melissa and Gowtami. Aditya has been assigned an account; Natasha will meet with the client to confirm interest. Arthur is still pending an account assignment.', who: 'Natasha Ness', nextStep: 'All EAs continuing through EA onboarding.' }
+                    { when: '9/23/26', what: 'All EAs in seat, pending final onboarding for Melissa and Gowtami. Aditya has been assigned an account; Natasha will meet with the client to confirm interest. Arthur is still pending an account assignment.', who: 'Natasha Ness', nextStep: 'All EAs continuing through EA onboarding.' },
+                    { when: '10/5/26', what: 'Pending onboarding and account selection for Melissa. Natasha can no longer support NHL and has notified Adobe. Three other EAs have been assigned accounts — Aditya to Marriott, Gowtami to HP, and Arthur to EY.', who: 'Natasha Ness', nextStep: 'Finalize Melissa\'s onboarding and account assignment.' }
                 ]
             },
             'tier-3-1': {
                 name: 'Tier 3.1: Integrated Services', id: '3.1', adobeContact: 'Jenn Reardon', rolesToFill: 9,
                 roleBreakdown: [
                     { role: 'Program Manager', filled: 1, total: 1 },
-                    { role: 'Business Analyst', filled: 1, total: 2 },
+                    { role: 'Customer Value Analyst', filled: 0, total: 2 },
                     { role: 'Lead Developer', filled: 4, total: 4 },
-                    { role: 'Lead Architect', filled: 1, total: 2 }
+                    { role: 'Lead Architect', filled: 2, total: 2 }
                 ],
                 summary: 'Tier 3.1 delivers ongoing technical implementation and delivery across integrated services engagements.',
                 overviewDescription: 'Tier 3.1 is the core delivery engine for Integrated Services engagements, carrying clients from strategy into live production through phased, predictable roadmaps. This pod balances multiple concurrent workstreams — program management, business analysis, architecture, and development — while maintaining clear scope boundaries so client expectations and delivery timelines stay aligned. A key focus is building lasting client-side platform competency, ensuring the value of each engagement extends well beyond the initial delivery window.',
@@ -1665,14 +1677,14 @@
                     { role: 'Program Manager', desc: 'Delivery planning & scope management', people: [
                         { name: 'Morgan Dudzinski', status: 'filled' }
                     ], openCount: 0 },
-                    { role: 'Business Analyst', desc: 'Requirements & documentation', people: [{ name: 'Aishwary Porwal', status: 'filled', location: 'Offshore' }], openCount: 1, openStatus: 'interviewing' },
+                    { role: 'Customer Value Analyst', desc: 'Customer value assessment & requirements', people: [], openCount: 2, openStatus: 'defining' },
                     { role: 'Lead Developer', desc: 'Technical implementation', people: [
                         { name: 'Anoop Chenthamara', status: 'filled', location: 'Offshore' }, { name: 'Abinash Nayak', status: 'filled', location: 'Offshore' },
                         { name: 'Sai Chaitanya Sama', status: 'filled' }, { name: 'Disha Patel', status: 'filled', location: 'Onshore' }
                     ], openCount: 0 },
                     { role: 'Lead Architect', desc: 'Architectural governance', people: [
-                        { name: 'Jonathan Carstensen', status: 'filled' }
-                    ], openCount: 1, openStatus: 'defining' }
+                        { name: 'Jonathan Carstensen', status: 'filled' }, { name: 'Nicolle Naylor', status: 'filled' }
+                    ], openCount: 0 }
                 ],
                 activations: {
                     planning: [
@@ -1700,7 +1712,9 @@
                 ],
                 discussions: [
                     { when: '9/11/26', what: 'Resource allocation & staffing mix discussion', who: 'Natasha Ness & Jen R.', nextStep: 'More onshore staffing (PM, LA); less offshore (Dev, 1 BA). Profiles shared for review.' },
-                    { when: '9/23/26', what: 'Close to completed staffing; finalizing Vndly details for the bulk of staff.', who: 'Natasha Ness', nextStep: 'Working on final offers and internal Merkle updates for 2 Lead Architects and 1 Business Analyst.' }
+                    { when: '9/23/26', what: 'Close to completed staffing; finalizing Vndly details for the bulk of staff.', who: 'Natasha Ness', nextStep: 'Working on final offers and internal Merkle updates for 2 Lead Architects and 1 Business Analyst.' },
+                    { when: '9/23/26', what: 'Discovered that Business Analyst skills at Merkle are not a fit for Customer Value Analyst needs.', who: 'Natasha Ness', nextStep: 'Not recasting the role; sourcing externally for Customer Value Analyst.' },
+                    { when: '10/5/26', what: 'Met with Bianca Slade and confirmed the misalignment with the BA role needs; this role is now moving to a Customer Value Analyst (CVA) role. We have released the previously assigned BA and are now vetting two new CVA candidates. Also finalizing onboarding and Vndly access for the rest of the 3.1 pod.', who: 'Natasha Ness', nextStep: 'TBD on when the CVA role will be filled.' }
                 ]
             },
             'tier-3-2a': {
@@ -1751,7 +1765,8 @@
                 ],
                 discussions: [
                     { when: '9/9/26', what: 'Role expectations shift; vetting internal candidates', who: 'Adobe', nextStep: 'Actively interviewing 4 Solution Architect candidates; sharing profiles to Kathy as ready' },
-                    { when: '9/23/26', what: 'Raymond is hired and ready to start 10/5. The other three Solution Architect roles remain in the interview process — previously shared resources were unable to join the pod due to conflicting engagements.', who: 'Natasha Ness', nextStep: 'Interviews are active.' }
+                    { when: '9/23/26', what: 'Raymond is hired and ready to start 10/5. The other three Solution Architect roles remain in the interview process — previously shared resources were unable to join the pod due to conflicting engagements.', who: 'Natasha Ness', nextStep: 'Interviews are active.' },
+                    { when: '10/5/26', what: 'About a dozen candidates currently in the interview process, though filling this role has proven challenging. Raymond has formally started with Merkle and can begin taking on work the week of 10/11; his information was shared with Adobe\'s onboarding team.', who: 'Natasha Ness', nextStep: 'Continue active interviews for the remaining Solution Architect openings.' }
                 ]
             },
             'tier-3-2b': {
@@ -1803,25 +1818,25 @@
                 ]
             },
             'tier-3-3': {
-                name: 'Tier 3.3: Analytics Modernization', id: '3.3', adobeContact: 'Eric O., John L.', rolesToFill: 5,
+                name: 'Tier 3.3: Product Modernization', id: '3.3', adobeContact: 'Eric O., John L.', rolesToFill: 5,
                 roleBreakdown: [
-                    { role: 'Tech Architect', filled: 1, total: 2 },
-                    { role: 'Business Analyst', filled: 2, total: 2 },
+                    { role: 'Tech Architect', filled: 2, total: 2 },
+                    { role: 'Business Analyst', filled: 1, total: 2 },
                     { role: 'Data Architect', filled: 0, total: 1 }
                 ],
-                summary: 'Tier 3.3 delivers Customer Journey Analytics (CJA) implementations and analytics platform modernization.',
-                overviewDescription: 'Tier 3.3 modernizes client analytics platforms around Adobe Customer Journey Analytics (CJA), designing the data architecture and pipelines that make cross-channel measurement possible. This pod builds robust, governed data pipelines and works closely with client analytics teams to transfer the skills needed to operate CJA independently. Success here is measured not just by clean implementation, but by client teams\' ability to self-serve insights and expand their analytics practice over time.',
-                podTags: ['CJA', 'Data Architecture', 'Analytics Governance'],
-                locationDefault: 'Mixed Onshore/Offshore', industryContext: 'Analytics Modernization',
+                summary: 'Tier 3.3 helps Adobe customers effectively migrate from legacy systems onto current-state systems, including Adobe Analytics to CJA, Adobe Campaign to AJO, and more.',
+                overviewDescription: 'Tier 3.3 helps Adobe customers effectively migrate from legacy systems onto current-state systems. This includes but isn\'t limited to Adobe Analytics to Customer Journey Analytics (CJA), Adobe Campaign to Adobe Journey Optimizer (AJO), and more. This pod designs the migration paths, data architecture, and pipelines needed to move clients off legacy platforms, and works closely with client teams to transfer the skills needed to operate the modernized stack independently. Success here is measured not just by clean migration, but by client teams\' ability to self-serve on the current-state platform and expand their practice over time.',
+                podTags: ['Legacy Modernization', 'CJA', 'AJO', 'Data Architecture'],
+                locationDefault: 'Mixed Onshore/Offshore', industryContext: 'Product Modernization',
                 objectives: [
-                    'Design modern analytics architectures using Customer Journey Analytics',
-                    'Build robust data pipelines and ensure data quality',
-                    'Enable client analytics teams to leverage data independently',
-                    'Establish governance and metrics frameworks'
+                    'Design and execute migration paths from legacy Adobe systems to current-state platforms',
+                    'Lead migrations such as Adobe Analytics to CJA and Adobe Campaign to AJO',
+                    'Build robust data pipelines and ensure data quality through the transition',
+                    'Enable client teams to operate independently on the modernized platform'
                 ],
                 resources: [
-                    { role: 'Tech Architect', desc: 'Analytics architecture & data design', people: [{ name: 'Chad Sitler', status: 'filled' }], openCount: 1, openStatus: 'defining' },
-                    { role: 'Business Analyst', desc: 'Analytics planning & requirements', people: [{ name: 'Vishal More', status: 'filled' }, { name: 'Ale Seidman', status: 'filled' }], openCount: 0 },
+                    { role: 'Tech Architect', desc: 'Analytics architecture & data design', people: [{ name: 'Chad Sitler', status: 'filled' }, { name: 'Oshu Kapil', status: 'filled' }], openCount: 0 },
+                    { role: 'Business Analyst', desc: 'Analytics planning & requirements', people: [{ name: 'Oba Brooks', status: 'filled' }], openCount: 1, openStatus: 'defining' },
                     { role: 'Data Architect', desc: 'ETL design & data governance', people: [], openCount: 1, openStatus: 'defining' }
                 ],
                 activations: {
@@ -1847,7 +1862,8 @@
                     'Engagement leads to ongoing analytics optimization contract'
                 ],
                 discussions: [
-                    { when: '9/14/26', what: 'Budget reallocation: 3.3 headcount to 3.4 consideration', who: 'Natasha Ness & Morgan', nextStep: 'Await decision on moving 2 open roles to 3.4 based on pod priorities' }
+                    { when: '9/14/26', what: 'Budget reallocation: 3.3 headcount to 3.4 consideration', who: 'Natasha Ness & Morgan', nextStep: 'Await decision on moving 2 open roles to 3.4 based on pod priorities' },
+                    { when: '10/5/26', what: 'Roles were shifted last week to best fit current team needs. Finalizing job descriptions with Lauren on the Adobe side for Data Architect and Business Analyst.', who: 'Natasha Ness', nextStep: 'Working through active interviews for both roles.' }
                 ]
             },
             'tier-3-4a': {
@@ -1905,7 +1921,8 @@
                 discussions: [
                     { when: '9/11/26', what: 'Finalize requirements & Amendment needs', who: 'Natasha Ness', nextStep: 'Complete staffing and Amendment scope definition' },
                     { when: '9/14/26', what: 'Finalize 3.4 pod requirements with Ben Durst', who: 'Natasha Ness & Ben Durst (Adobe)', nextStep: 'Model variations; finalize JDs and source headcount for gaps' },
-                    { when: '9/23/26', what: 'Aligned on staffing mix; pod is fully staffed. Kicked off Highmark with Adobe to begin work.', who: 'Natasha Ness', nextStep: 'Pending Vndly access — Natasha to send to Alberto this week. Coordinating an in-person ways-of-working session with Anna P.' }
+                    { when: '9/23/26', what: 'Aligned on staffing mix; pod is fully staffed. Kicked off Highmark with Adobe to begin work.', who: 'Natasha Ness', nextStep: 'Pending Vndly access — Natasha to send to Alberto this week. Coordinating an in-person ways-of-working session with Anna P.' },
+                    { when: '10/5/26', what: 'Planning a ways-of-working workshop for Tier 3.4 as a whole, scheduled for 10/14 with Anne and Ben.', who: 'Natasha Ness', nextStep: 'Finalize workshop logistics and agenda.' }
                 ]
             },
             'tier-3-4b': {
@@ -1934,7 +1951,7 @@
                     { role: 'Lead Architect', desc: 'Technical architecture & solution design', people: [{ name: 'Prabudoss Haridoss', status: 'filled' }], openCount: 0 },
                     { role: 'Business Analyst', desc: 'Requirements & feature prioritization', people: [{ name: 'Ethan Dilhoff', status: 'filled' }], openCount: 0 },
                     { role: 'Lead Developer', desc: 'Prototype development & experimentation', people: [], openCount: 2, openStatus: 'defining' },
-                    { role: 'QA', desc: 'AI & agentic systems testing', people: [{ name: 'Pooja Shinde', status: 'filled' }], openCount: 0 }
+                    { role: 'QA', desc: 'AI & agentic systems testing (shared with Drago)', people: [{ name: 'Grishma Shah', status: 'filled' }], openCount: 0 }
                 ],
                 activations: {
                     planning: [
@@ -1962,7 +1979,8 @@
                 discussions: [
                     { when: '9/11/26', what: 'Finalize requirements & Amendment needs', who: 'Natasha Ness', nextStep: 'Complete staffing and Amendment scope definition' },
                     { when: '9/14/26', what: 'Finalize 3.4 pod requirements with Ben Durst', who: 'Natasha Ness & Ben Durst (Adobe)', nextStep: 'Model variations; finalize JDs and source headcount for gaps' },
-                    { when: '9/23/26', what: 'Aligned on staffing mix. Pod is partially filled; still missing key developers.', who: 'Natasha Ness', nextStep: 'Pending Vndly access — Natasha to send to Alberto this week. Coordinating an in-person ways-of-working session with Anna P.' }
+                    { when: '9/23/26', what: 'Aligned on staffing mix. Pod is partially filled; still missing key developers.', who: 'Natasha Ness', nextStep: 'Pending Vndly access — Natasha to send to Alberto this week. Coordinating an in-person ways-of-working session with Anna P.' },
+                    { when: '10/5/26', what: 'Planning a ways-of-working workshop for Tier 3.4 as a whole, scheduled for 10/14 with Anne and Ben.', who: 'Natasha Ness', nextStep: 'Finalize workshop logistics and agenda.' }
                 ]
             },
             'tier-3-4c': {
@@ -2185,10 +2203,10 @@
                     <div class="metric-card">
                         <div class="chart-card-header">
                             <div class="chart-card-title">Roles Filled by Pod</div>
-                            <div class="chart-card-stat"><div class="big">${totalFilledOfTarget}/${totalToFill}</div><div class="small">roles filled/vetted</div></div>
+                            <div class="chart-card-stat"><div class="big">${totalFilledOfTarget}/${totalToFill}</div><div class="small">roles filled</div></div>
                         </div>
                         <div class="chart-legend">
-                            <div class="chart-legend-item"><span class="chart-legend-swatch filled"></span>Filled/Vetted</div>
+                            <div class="chart-legend-item"><span class="chart-legend-swatch filled"></span>Filled</div>
                             <div class="chart-legend-item"><span class="chart-legend-swatch remaining"></span>Remaining</div>
                         </div>
                         <div class="bar-rows">
@@ -2218,22 +2236,16 @@
                             <div class="donut-svg-holder">
                                 ${buildDonutSVG([
                                     { value: totalFilled, color: STATUS_COLORS.filled },
-                                    { value: totalAdobeVetting, color: STATUS_COLORS.adobevetting },
-                                    { value: totalInterviewing, color: STATUS_COLORS.interviewing },
-                                    { value: totalDefining, color: STATUS_COLORS.defining },
-                                    { value: totalOnhold, color: STATUS_COLORS.onhold }
+                                    { value: totalAdobeVetting + totalInterviewing + totalDefining + totalOnhold, color: STATUS_COLORS.defining }
                                 ])}
                                 <div class="donut-center-text">
                                     <div class="donut-center-pct">${fillRate}%</div>
-                                    <div class="donut-center-label">Filled/Vetted</div>
+                                    <div class="donut-center-label">Filled</div>
                                 </div>
                             </div>
                             <div class="donut-legend">
-                                <div class="donut-legend-row"><div class="donut-legend-left"><span class="donut-legend-swatch filled"></span>Filled/Vetted</div><div class="donut-legend-value">${totalFilled} (${pct(totalFilled)}%)</div></div>
-                                <div class="donut-legend-row"><div class="donut-legend-left"><span class="donut-legend-swatch adobevetting"></span>Adobe Vetting</div><div class="donut-legend-value">${totalAdobeVetting} (${pct(totalAdobeVetting)}%)</div></div>
-                                <div class="donut-legend-row"><div class="donut-legend-left"><span class="donut-legend-swatch interviewing"></span>Interviewing</div><div class="donut-legend-value">${totalInterviewing} (${pct(totalInterviewing)}%)</div></div>
-                                <div class="donut-legend-row"><div class="donut-legend-left"><span class="donut-legend-swatch defining"></span>Defining</div><div class="donut-legend-value">${totalDefining} (${pct(totalDefining)}%)</div></div>
-                                <div class="donut-legend-row"><div class="donut-legend-left"><span class="donut-legend-swatch onhold"></span>On-Hold</div><div class="donut-legend-value">${totalOnhold} (${pct(totalOnhold)}%)</div></div>
+                                <div class="donut-legend-row"><div class="donut-legend-left"><span class="donut-legend-swatch filled"></span>Filled</div><div class="donut-legend-value">${totalFilled} (${pct(totalFilled)}%)</div></div>
+                                <div class="donut-legend-row"><div class="donut-legend-left"><span class="donut-legend-swatch defining"></span>Open</div><div class="donut-legend-value">${totalAdobeVetting + totalInterviewing + totalDefining + totalOnhold} (${pct(totalAdobeVetting + totalInterviewing + totalDefining + totalOnhold)}%)</div></div>
                             </div>
                         </div>
                     </div>
@@ -2253,7 +2265,7 @@
                         <div class="pod-card-headline">${pod.name}</div>
                         <div class="pod-card-desc">${pod.summary}</div>
                         <div class="pod-card-pills">
-                            ${c.filled > 0 ? `<span class="pod-pill">${c.filled} Filled/Vetted</span>` : ''}
+                            ${c.filled > 0 ? `<span class="pod-pill">${c.filled} Filled</span>` : ''}
                             ${c.adobevetting > 0 ? `<span class="pod-pill">${c.adobevetting} Adobe Vetting</span>` : ''}
                             ${c.interviewing > 0 ? `<span class="pod-pill">${c.interviewing} Interviewing</span>` : ''}
                             ${c.defining > 0 ? `<span class="pod-pill">${c.defining} Defining</span>` : ''}
@@ -2317,10 +2329,10 @@
         }
 
         const STATUS_SECTIONS = [
-            { key: 'filled', label: 'Filled / Vetted', sentence: 'These roles are staffed with confirmed, named team members.' },
+            { key: 'filled', label: 'Filled', sentence: 'These roles are staffed with confirmed, named team members.' },
             { key: 'adobevetting', label: 'Adobe Vetting', sentence: 'Adobe is reviewing these named candidates before confirming final selections — more candidates may be listed here than open roles while a decision is made.' },
             { key: 'interviewing', label: 'Interviewing', sentence: 'Open roles actively in the interview process; candidates are not yet named.' },
-            { key: 'defining', label: 'Defining', sentence: 'Roles still being scoped and defined before recruiting begins.' },
+            { key: 'defining', label: 'Open', sentence: 'Roles still being scoped and defined before recruiting begins.' },
             { key: 'onhold', label: 'On-Hold', sentence: 'Roles on hold pending budget or scope confirmation.' }
         ];
 
@@ -2441,7 +2453,7 @@
 
 
         function statusWord(status) {
-            const map = { filled: 'Filled/Vetted', adobevetting: 'Adobe Vetting', interviewing: 'Interviewing', defining: 'Defining', onhold: 'On-Hold' };
+            const map = { filled: 'Filled', adobevetting: 'Adobe Vetting', interviewing: 'Interviewing', defining: 'Open', onhold: 'On-Hold' };
             return map[status] || status;
         }
 
