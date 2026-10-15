@@ -305,6 +305,7 @@
         }
         .person-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
         .person-tile-name { font-size: 15px; font-weight: 700; color: #1F1F1F; margin-bottom: 4px; }
+        .allocation-tag { font-size: 11px; font-weight: 700; color: #6311CB; background: rgba(99,17,203,0.1); padding: 2px 6px; border-radius: 4px; vertical-align: middle; }
         .person-tile-role { font-size: 13px; color: #505050; margin-bottom: 12px; line-height: 1.4; }
         .person-tile-status {
             display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 20px;
@@ -716,6 +717,16 @@
                 certs: ['Adobe Certified Professional – Customer Journey Analytics Business Practitioner (2025)', 'Adobe Certified Professional – AEM Sites Business Practitioner Expert (In Progress)'],
                 location: 'Onshore',
                 industries: 'Financial Services, Banking, Retail/Commerce',
+                image: null
+            },
+            'Rick Merced': {
+                title: 'Senior Solutions Architect',
+                currentTitle: 'Senior Solutions Architect @ Verizon | Onshore',
+                summary: '20+ years of experience in marketing and technology, specializing in Adobe Experience Manager (AEM) and Adobe Campaign solution architecture. Currently Senior Solutions Architect at Verizon, with 7+ years enhancing enterprise transactional email and SMS communication systems across AEM and Adobe Campaign, building on prior roles as a Solutions Engineer and Email Developer.',
+                tags: ['Adobe Experience Manager (AEM)', 'Adobe Campaign', 'Agentic Workflows', 'Solution Architecture', 'Generative AI Development', 'REST APIs', 'JSON/XML', 'HTML/CSS/JavaScript'],
+                certs: ['Google AI Professional Certificate', 'Google AI Essentials Specialization'],
+                location: 'Onshore',
+                industries: 'Telecommunications',
                 image: null
             },
             'Grishma Shah': {
@@ -1615,9 +1626,10 @@
                 ]
             },
             'tier-2': {
-                name: 'Tier 2: Enterprise Architects', id: 'T2', adobeContact: 'Jenn Reardon', rolesToFill: 4,
+                name: 'Tier 2: Enterprise Architects', id: 'T2', adobeContact: 'Jenn Reardon', rolesToFill: 7,
                 roleBreakdown: [
-                    { role: 'Senior Enterprise Architect', filled: 4, total: 4 }
+                    { role: 'Senior Enterprise Architect', filled: 5, total: 5 },
+                    { role: 'Lead Architect', filled: 2, total: 2 }
                 ],
                 summary: 'Tier 2 provides senior technical architecture and advisory for Adobe Integrated Services.',
                 overviewDescription: 'Tier 2 supplies the deep technical architecture and advisory expertise that underpins every delivery pod in the program. This team leads discovery and solution design across the full Adobe Experience Cloud stack, translating complex client requirements into integrated, governed architectures. Beyond hands-on design work, Tier 2 architects also mentor delivery teams and build client-side technical maturity so solutions remain sustainable long after go-live.',
@@ -1631,7 +1643,10 @@
                 ],
                 resources: [
                     { role: 'Senior Enterprise Architect', desc: 'Technical strategy & solution design', people: [
-                        { name: 'Gowtami Mohanty', status: 'filled' }, { name: 'Aditya Vedula', status: 'filled' }, { name: 'Arthur Golk', status: 'filled' }, { name: 'Melissa Rae Brancato', status: 'filled' }
+                        { name: 'Gowtami Mohanty', status: 'filled' }, { name: 'Aditya Vedula', status: 'filled' }, { name: 'Arthur Golk', status: 'filled' }, { name: 'Melissa Rae Brancato', status: 'filled' }, { name: 'Natasha Ness', status: 'filled', allocation: '50%' }
+                    ], openCount: 0 },
+                    { role: 'Lead Architect', desc: 'Architectural governance', people: [
+                        { name: 'Jonathan Carstensen', status: 'filled' }, { name: 'Nicolle Naylor', status: 'filled' }
                     ], openCount: 0 }
                 ],
                 activations: {
@@ -1658,12 +1673,11 @@
                 ]
             },
             'tier-3-1': {
-                name: 'Tier 3.1: Integrated Services', id: '3.1', adobeContact: 'Jenn Reardon', rolesToFill: 9,
+                name: 'Tier 3.1: Integrated Services', id: '3.1', adobeContact: 'Jenn Reardon', rolesToFill: 7,
                 roleBreakdown: [
                     { role: 'Program Manager', filled: 1, total: 1 },
                     { role: 'Customer Value Analyst', filled: 0, total: 2 },
-                    { role: 'Lead Developer', filled: 4, total: 4 },
-                    { role: 'Lead Architect', filled: 2, total: 2 }
+                    { role: 'Lead Developer', filled: 4, total: 4 }
                 ],
                 summary: 'Tier 3.1 delivers ongoing technical implementation and delivery across integrated services engagements.',
                 overviewDescription: 'Tier 3.1 is the core delivery engine for Integrated Services engagements, carrying clients from strategy into live production through phased, predictable roadmaps. This pod balances multiple concurrent workstreams — program management, business analysis, architecture, and development — while maintaining clear scope boundaries so client expectations and delivery timelines stay aligned. A key focus is building lasting client-side platform competency, ensuring the value of each engagement extends well beyond the initial delivery window.',
@@ -1683,9 +1697,6 @@
                     { role: 'Lead Developer', desc: 'Technical implementation', people: [
                         { name: 'Anoop Chenthamara', status: 'filled', location: 'Offshore' }, { name: 'Abinash Nayak', status: 'filled', location: 'Offshore' },
                         { name: 'Sai Chaitanya Sama', status: 'filled' }, { name: 'Disha Patel', status: 'filled', location: 'Onshore' }
-                    ], openCount: 0 },
-                    { role: 'Lead Architect', desc: 'Architectural governance', people: [
-                        { name: 'Jonathan Carstensen', status: 'filled' }, { name: 'Nicolle Naylor', status: 'filled' }
                     ], openCount: 0 }
                 ],
                 activations: {
@@ -1722,7 +1733,7 @@
             'tier-3-2a': {
                 name: 'Tier 3.2a: ACS Pre-Sales', id: '3.2a', adobeContact: 'Kathy Martin', rolesToFill: 4,
                 roleBreakdown: [
-                    { role: 'Solution Architect', filled: 1, total: 4 }
+                    { role: 'Solution Architect', filled: 2, total: 4 }
                 ],
                 summary: 'Tier 3.2a delivers specialized Adobe Consulting Services pre-sales engagements across the full Adobe Enterprise Technology portfolio, with a focus on solutions spanning Content Supply Chain and Data & Journeys.',
                 overviewDescription: 'Tier 3.2a is Adobe Consulting Services\' dedicated pre-sales pod, engaging prospective clients with deep solution architecture across the full Adobe Enterprise Technology portfolio, with particular focus on Content Supply Chain and Data & Journeys solutions. This team designs technical solutions that demonstrate integration depth and platform value, then builds the business case that turns strategic interest into a committed, longer-term engagement. Because this work happens ahead of contract signature, the pod operates with tight turnaround expectations and close coordination with Adobe\'s own pre-sales organization. These roles may require travel, must be based in the US or Canada, and work side-by-side with sellers throughout the sales cycle. Candidates need a strong functional understanding across the full Adobe solution portfolio, with the ability to tie client objectives and pain points to tangible outcomes that Adobe Consulting Services (ACS) can support.',
@@ -1738,8 +1749,9 @@
                 ],
                 resources: [
                     { role: 'Solution Architect', desc: 'Solution design across Adobe Enterprise Technologies', people: [
-                        { name: 'Raymond Blaisdell', status: 'filled' }
-                    ], openCount: 3, openStatus: 'defining' }
+                        { name: 'Raymond Blaisdell', status: 'filled' },
+                        { name: 'Rick Merced', status: 'filled' }
+                    ], openCount: 2, openStatus: 'defining' }
                 ],
                 activations: {
                     planning: [
@@ -2329,7 +2341,7 @@
         const STATUS_SECTIONS = [
             { key: 'filled', label: 'Filled', sentence: 'These roles are staffed with confirmed, named team members.' },
             { key: 'adobevetting', label: 'Adobe Vetting', sentence: 'Adobe is reviewing these named candidates before confirming final selections — more candidates may be listed here than open roles while a decision is made.' },
-            { key: 'interviewing', label: 'Interviewing', sentence: 'Open roles actively in the interview process; candidates are not yet named.' },
+            { key: 'interviewing', label: 'Interviewing', sentence: 'Roles actively in the interview process — may include named candidates still under review.' },
             { key: 'defining', label: 'Open', sentence: 'Roles still being scoped and defined before recruiting begins.' },
             { key: 'onhold', label: 'On-Hold', sentence: 'Roles on hold pending budget or scope confirmation.' }
         ];
@@ -2339,7 +2351,7 @@
             pod.resources.forEach(res => {
                 res.people.forEach(p => {
                     if (buckets[p.status]) buckets[p.status].push({
-                        name: p.name, role: res.role, status: p.status,
+                        name: p.name, role: res.role, status: p.status, allocation: p.allocation || '',
                         desc: res.desc || '', tools: res.tools || [], location: res.location || p.location || pod.locationDefault || 'Location TBD'
                     });
                 });
@@ -2372,7 +2384,7 @@
             return `
                 <div class="person-tile" onclick="openProfileModal('${item.name.replace(/'/g, "\\'")}', '${item.role.replace(/'/g, "\\'")}', '${item.status}', '${podKey}')">
                     <div class="person-avatar">${avatarInner}</div>
-                    <div class="person-tile-name">${formatShortName(item.name)}</div>
+                    <div class="person-tile-name">${formatShortName(item.name)}${item.allocation ? ` <span class="allocation-tag">${item.allocation}</span>` : ''}</div>
                     <div class="person-tile-role">${item.role}</div>
                     <span class="person-tile-status ${item.status}"><span class="dot ${item.status}"></span>${statusWord(item.status)}</span>
                 </div>
@@ -2399,7 +2411,7 @@
                         ${rows.map(item => {
                             const nameCell = item.isOpen
                                 ? `<span class="inventory-name-open">${item.count} Open</span>`
-                                : `<span class="inventory-name-link" onclick="openProfileModal('${item.name.replace(/'/g, "\\'")}', '${item.role.replace(/'/g, "\\'")}', '${item.status}', '${podKey}')">${formatShortName(item.name)}</span>`;
+                                : `<span class="inventory-name-link" onclick="openProfileModal('${item.name.replace(/'/g, "\\'")}', '${item.role.replace(/'/g, "\\'")}', '${item.status}', '${podKey}')">${formatShortName(item.name)}</span>${item.allocation ? ` <span class="allocation-tag">${item.allocation}</span>` : ''}`;
                             return `
                                 <tr>
                                     <td>${nameCell}</td>
@@ -2584,7 +2596,7 @@
                         const tags = (profile && profile.tags && profile.tags.length) ? profile.tags.slice(0, 5) : (pod.podTags || []).slice(0, 5);
                         const rawLocation = p.location || (profile && profile.location) || pod.locationDefault || '';
                         const region = resolveRegion(rawLocation);
-                        rows.push({ name: p.name, podKey: key, podName: pod.name, podShort, role: res.role, status: p.status, tags, named: true, region });
+                        rows.push({ name: p.name, podKey: key, podName: pod.name, podShort, role: res.role, status: p.status, tags, named: true, region, allocation: p.allocation || '' });
                     });
                 });
             });
@@ -2706,7 +2718,7 @@
                                     <div class="inventory-name-cell">
                                         ${thumb}
                                         ${row.named
-                                            ? `<span class="inventory-name-link" onclick="openProfileModal('${row.name.replace(/'/g, "\\'")}', '${row.role.replace(/'/g, "\\'")}', '${row.status}', '${row.podKey}')">${formatShortName(row.name)}</span>`
+                                            ? `<span class="inventory-name-link" onclick="openProfileModal('${row.name.replace(/'/g, "\\'")}', '${row.role.replace(/'/g, "\\'")}', '${row.status}', '${row.podKey}')">${formatShortName(row.name)}</span>${row.allocation ? ` <span class="allocation-tag">${row.allocation}</span>` : ''}`
                                             : `<span class="inventory-name-open">${row.openCount} Open Role${row.openCount > 1 ? 's' : ''}</span>`}
                                     </div>
                                 </td>
